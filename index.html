@@ -19,8 +19,7 @@
                 A short lesson that will cover:
               </h1>
               <ul class="title is-2">
-                <li>Lines of best fit.</li>
-                <li>Mean-squared error.</li>
+                <li>Mean Squared Error (MSE)</li>
               </ul>
               <br>
             </div>
@@ -33,12 +32,15 @@
         <div class="columns">
           <div class="column">
             <div class="content">
-              <h2 class="title is-4">
-                Below, we have a graph with randomly generated data points.
+              <h2 class="title is-4 has-text-weight-normal">
+                On the right, we have a graph with a set of 6 data points.
               </h2>
-              <br>
-              <h2 class="title is-4">
+              <h2 class="title is-4 has-text-weight-normal">
                 We want to fit a line that will most closely follow the trend of these points.
+                We have two options - the red line, and the green line.
+              </h2>
+              <h2 class="title is-4 has-text-weight-normal">
+                How should we determine which line is a better fit?
               </h2>
             </div>
           </div>
@@ -46,7 +48,6 @@
             <div class="box">
               <div id="error-graph-one">
               </div>
-              <button class="button" id="refresh-data">Refresh Points</button>
             </div>
           </div>
         </div>
@@ -54,15 +55,35 @@
     </section>
     <section class="section">
       <div class="container">
+        <h2 class="title is-3 center">
+          To choose the better fit, we need our best friend - Mean Squared Error (MSE).
+        </h2>
+        <h2 class="title is-4 center has-text-weight-normal">
+          The mean squared error quantifies how closely a line/curve fits to a set of data by
+          measuring the average squared difference between our data and the expected values.
+        </h2>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
         <div class="columns">
           <div class="column">
             <div class="content">
-              <h2 class="title is-4">
-                Below, we have a graph with randomly generated data points.
+              <h2 class="title is-3">
+                Let's look at each line separately, starting with the red line.
               </h2>
-              <br>
-              <h2 class="title is-4">
-                We want to fit a line that will most closely follow the trend of these points.
+              <h2 class="title is-4 has-text-weight-normal">
+                The equation of the line is:
+              </h2>
+              <h2 class="title is-4 italic">
+                y=x+2
+              </h2>
+              <h2 class="title is-4 has-text-weight-normal">
+                Notice the two sets of data points on the graph to the right.
+                The blue points are our original data values, and the black points are our expected values based on the line equation.
+              </h2>
+              <h2 class="title is-4 has-text-weight-normal">
+                With MSE, we will be dealing with the vertical distances between the two sets of data points.
               </h2>
             </div>
           </div>
@@ -70,10 +91,54 @@
             <div class="box">
               <div id="error-graph-two">
               </div>
-              <button class="button" id="refresh-data">Refresh Points</button>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2 class="title is-3">
+          Let's get into the calculations.
+        </h2>
+        <h2 class="title is-4 has-text-weight-normal">
+          1. We can organize the data as follows:
+        </h2>
+        <table class="table is-bordered" id="msetable">
+        </table>
+        <h2 class="title is-4 has-text-weight-normal">
+          2. We can view the two sets of y-coordinates as two vectors "y-hat" and "y":
+        </h2>
+        <h2 class="title is-4 center">
+          "y-hat" = &lt; 3, 4, 5, 6, 7, 8 &gt;
+        </h2>
+        <h2 class="title is-5 center has-text-weight-normal">
+          represents the predicted set of data points based on the model
+        </h2>
+        <h2 class="title is-4 center">
+          "y" =  &lt; 2, 3, 6, 4, 8, 9 &gt;
+        </h2>
+        <h2 class="title is-5 center has-text-weight-normal" >
+          represents the set of the original data points.
+        </h2>
+        <h2 class="title is-4 has-text-weight-normal">
+          3. Now, we want to generate a vector of all the errors.
+             To do so, we take the difference between "y-hat" and "y":
+        </h2>
+        <h2 class="title is-4 center">
+          "y-hat" - "y" =  &lt; 3-2, 4-3, 5-6, 6-4, 7-8, 8-9 &gt;
+        </h2>
+        <h2 class="title is-4 center">
+          "y-hat" - "y" =  &lt; 1, 1, -1, 2, -1, -1 &gt;
+        </h2>
+        <h2 class="title is-4 has-text-weight-normal">
+            4. To get the sum of the squared errors, we take the dot product of the difference vector with itself
+          (we're almost there!):
+        </h2>
+        <h2 class="title is-4 has-text-weight-normal">
+            5. Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
+            Therefore, we divide the sum of the squared errors by the number of data points -- in our case, 6.
+        </h2>
       </div>
     </section>
     <section class="section">
@@ -82,19 +147,26 @@
           <div class="column">
             <div class="content">
               <h2 class="title is-4">
-                Below, we have a graph with randomly generated data points.
+                Now is your turn to calculate!
               </h2>
-              <br>
-              <h2 class="title is-4">
-                We want to fit a line that will most closely follow the trend of these points.
+              <h2 class="title is-4 has-text-weight-normal">
+                Let's try applying the previous steps to the second line of fit, "y = 3x/2".
               </h2>
+              <label class="label">Calculated MSE:</label>
+              <div class="field">
+              <input class="input is-primary" type="text" id="mse-input" value="" />
+              </div>
+              <button class="button" id="submit">Submit</button>
+              <div class="content">
+                <div class="notification is-primary" id="check-answer" style="display: none">
+                </div>
+              </div>
             </div>
           </div>
           <div class="column">
             <div class="box">
               <div id="error-graph-three">
               </div>
-              <button class="button" id="refresh-data">Refresh Points</button>
             </div>
           </div>
         </div>
@@ -105,11 +177,11 @@
         <div class="columns">
           <div class="column">
             <div class="content">
-              <h2 class="title is-4">
+              <h2 class="title is-4 has-text-weight-normal">
                 Below, we have a graph with randomly generated data points.
               </h2>
               <br>
-              <h2 class="title is-4">
+              <h2 class="title is-4 has-text-weight-normal">
                 We want to fit a line that will most closely follow the trend of these points.
               </h2>
             </div>
