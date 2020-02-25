@@ -56,12 +56,12 @@ let errorGraphTwo = {
         domain: [0, 10]
     },
     annotations:[
-      {x: 1},
-      {x: 2},
-      {x: 3},
-      {x: 4},
-      {x: 5},
-      {x: 6},
+        {x: 1},
+        {x: 2},
+        {x: 3},
+        {x: 4},
+        {x: 5},
+        {x: 6},
     ],
     data: [
         {
@@ -69,11 +69,11 @@ let errorGraphTwo = {
             attr: { "stroke-width": 3 }
         },
         {
-          points: idealPointsOne,
-          fnType: 'points',
-          graphType: 'scatter',
-          color: 'black',
-          attr: { "stroke-width": 3 }
+            points: idealPointsOne,
+            fnType: 'points',
+            graphType: 'scatter',
+            color: 'black',
+            attr: { "stroke-width": 3 }
         },
         {
             points: genErrorPoints,
@@ -107,11 +107,11 @@ let errorGraphThree = {
     ],
     data: [
         {
-          points: idealPointsTwo,
-          fnType: 'points',
-          graphType: 'scatter',
-          color: 'black',
-          attr: { "stroke-width": 3 }
+            points: idealPointsTwo,
+            fnType: 'points',
+            graphType: 'scatter',
+            color: 'black',
+            attr: { "stroke-width": 3 }
         },
         {
             points: genErrorPoints,
@@ -179,9 +179,9 @@ for (let i = 0; i < xCoords.length; i++) {
   cellPrdY = document.createElement("td");
 
   if (i % 2 == 1) {
-      cellX.style.backgroundColor = "rgb(233, 247, 218)";
-      cellOurY.style.backgroundColor = "rgb(233, 247, 218)";
-      cellPrdY.style.backgroundColor = "rgb(233, 247, 218)";
+    cellX.style.backgroundColor = "rgb(233, 247, 218)";
+    cellOurY.style.backgroundColor = "rgb(233, 247, 218)";
+    cellPrdY.style.backgroundColor = "rgb(233, 247, 218)";
   }
 
   dataX = document.createTextNode(xCoords[i]);
