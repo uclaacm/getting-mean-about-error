@@ -26,11 +26,11 @@ let errorGraphOne = {
     },
     data: [
         {
-            fn: 'x + 2', color: 'red',
+            fn: 'x + 2', color: 'green',
             attr: { "stroke-width": 3 }
         },
         {
-            fn: '3x/2', color: 'green',
+            fn: '3x/2', color: 'red',
             attr: { "stroke-width": 3 }
         },
         {
@@ -65,11 +65,11 @@ let errorGraphTwo = {
     ],
     data: [
         {
-            fn: 'x + 2', color: 'red',
+            fn: '3x/2', color: 'red',
             attr: { "stroke-width": 3 }
         },
         {
-            points: idealPointsOne,
+            points: idealPointsTwo,
             fnType: 'points',
             graphType: 'scatter',
             color: 'black',
@@ -107,7 +107,7 @@ let errorGraphThree = {
     ],
     data: [
         {
-            points: idealPointsTwo,
+            points: idealPointsOne,
             fnType: 'points',
             graphType: 'scatter',
             color: 'black',
@@ -121,7 +121,7 @@ let errorGraphThree = {
             attr: { "stroke-width": 5 }
         },
         {
-            fn: '3x/2', color: 'green',
+            fn: 'x + 2', color: 'green',
             attr: { "stroke-width": 3 }
         }
     ]
@@ -185,7 +185,7 @@ for (let i = 0; i < xCoords.length; i++) {
   }
 
   dataX = document.createTextNode(xCoords[i]);
-  dataOurY = document.createTextNode(idealPointsOne[i][1]);
+  dataOurY = document.createTextNode(idealPointsTwo[i][1]);
   dataPrdY = document.createTextNode(yCoords[i]);
 
   cellX.appendChild(dataX);
@@ -204,12 +204,12 @@ document.getElementById("submit").addEventListener("click", checkMSE);
 let answerNotif = document.getElementById("check-answer");
 
 function checkMSE() {
-  // MSE for demo is 1.125
+  // MSE for demo is 1.5
   answerNotif.style.display = "block";
   let msgTxt;
   let mseInput = document.getElementById("mse-input").value;
 
-  if (mseInput === String(meanSquaredError(genErrorPoints, idealPointsTwo))) {
+  if (mseInput === String(meanSquaredError(genErrorPoints, idealPointsOne))) {
     msgTxt = "Correct!";
   }
   else {
