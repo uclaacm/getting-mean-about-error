@@ -109,23 +109,24 @@
         <div class="box steps">
           <div class="step-content">
             <h2 class="title is-4 has-text-weight-normal">
-              1. We can organize the data as follows:
+              Referring to the graph, we can organize the data as follows:
             </h2>
-            <table class="table" id="msetable">
+            <table class="table center" id="msetable">
             </table>
           </div>
           <div class="step-content">
             <h2 class="title is-4 has-text-weight-normal">
-              2. We can view the two sets of \(y\)-coordinates as two vectors \(\hat y\) and \(y\):
+              We can view the two sets of \(y\)-coordinates as two vectors \(\hat y\) and \(y\):
+              <span class="title is-6 why-btn"><b>Why?</b></span>
             </h2>
             <h2 class="title is-4 center mathformat">
              \[\hat y\ = \: < 1.5,\: 3, \:4.5, \:6, \:7.5, \:9 > \]
             </h2>
             <h2 class="title is-5 center has-text-weight-normal">
-              represents the predicted set of data points based on the model
+              represents the predicted set of data points based on the model.
             </h2>
             <h2 class="title is-4 center mathformat">
-              \[y\ =  \:< 2, \:3, \:6, \:4,\: 8,\: 9 > \]
+              \[y\ =  \: < 2, \:3, \:6, \:4,\: 8,\: 9 > \]
             </h2>
             <h2 class="title is-5 center has-text-weight-normal" >
               represents the set of the original data points.
@@ -133,18 +134,18 @@
           </div>
           <div class="step-content">
             <h2 class="title is-4 has-text-weight-normal">
-              3. Now, we want to generate a vector of all the errors.
+              Now, we want to generate a vector of all the errors.
               To do so, we take the difference between \(\hat y\) and \(y\):
             </h2>
             <h2 class="title is-4 center mathformat">
-              \[\hat y\  - y\]
+              \[\hat y\ - y\]
               \[ = \: < 1.5-2, \:3-3, \:4.5-6, \:6-4, \:7.5-8, \:9-9 > \]
               \[ = \: < -0.5, \: 0, -1.5,\:  2, -0.5, \: 0 > \]
             </h2>
           </div>
           <div class="step-content">
             <h2 class="title is-4 has-text-weight-normal">
-              4. To get the sum of the squared errors, we take the dot product of the difference vector with itself
+              To get the sum of the squared errors, we take the dot product of the difference vector with itself
               (we're almost there!):
             </h2>
             <h2 class="title is-4 center mathformat">
@@ -155,7 +156,7 @@
           </div>
           <div class="step-content">
             <h2 class="title is-4 has-text-weight-normal">
-              5. Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
+              Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
               Therefore, we divide the sum of the squared errors by the number of data points -- in our case, 6.
             </h2>
             <h2 class="title is-3 center mathformat">
@@ -166,20 +167,20 @@
           <h2 class="title is-4" id="next" onclick="setStep(1)">&#10095;</h2>
         </div>
         <div id="steps-nav">
-          <div class="title is-2 dot" onclick="jumpStep(0)">
-            .
+          <div class="title is-5 dot" onclick="jumpStep(0)">
+            <b>1</b>
           </div>
-          <div class="title is-2 dot" onclick="jumpStep(1)">
-            .
+          <div class="title is-5 dot" onclick="jumpStep(1)">
+            <b>2</b>
           </div>
-          <div class="title is-2 dot" onclick="jumpStep(2)">
-            .
+          <div class="title is-5 dot" onclick="jumpStep(2)">
+            <b>3</b>
           </div>
-          <div class="title is-2 dot" onclick="jumpStep(3)">
-            .
+          <div class="title is-5 dot" onclick="jumpStep(3)">
+            <b>4</b>
           </div>
-          <div class="title is-2 dot" onclick="jumpStep(4)">
-            .
+          <div class="title is-5 dot" onclick="jumpStep(4)">
+            <b>5</b>
           </div>
         </div>
       </div>

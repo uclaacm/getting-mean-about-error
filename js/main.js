@@ -158,9 +158,9 @@ let cellX = document.createElement("th");
 let cellOurY = document.createElement("th");
 let cellPrdY = document.createElement("th");
 
-let dataX = document.createTextNode("x-coordinate");
-let dataOurY = document.createTextNode("expected y-coordinate");
-let dataPrdY = document.createTextNode("original y-coordinate");
+let dataX = document.createTextNode("x-Coordinate");
+let dataOurY = document.createTextNode("y-Coordinate (expected/black)");
+let dataPrdY = document.createTextNode("y-Coordinate (our/blue)");
 
 cellX.appendChild(dataX);
 cellOurY.appendChild(dataOurY);
@@ -266,11 +266,11 @@ function showStep (n) {
     for (let i = 0; i < numSteps; i++) {
         if (i !== n) {
             steps[i].style.display = "none";
-            dots[i].className = "title is-2 dot";
+            dots[i].className = "title is-5 dot";
         }
         else {
             steps[i].style.display = "block";
-            dots[i].className = "title is-2 dot dot-active";
+            dots[i].className = "title is-5 dot dot-active";
         }
     }
 }

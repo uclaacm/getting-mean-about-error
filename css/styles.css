@@ -3,11 +3,17 @@
 }
 
 .center {
- text-align: center;
+	text-align: center;
 }
 
 .mathformat {
-  padding: 1px;
+  padding-top: 1px;
+}
+
+table {
+	padding-top: 50px;
+	display: flex;
+	justify-content: center;
 }
 
 table tr {
@@ -17,11 +23,14 @@ table tr {
 table tr th {
 	display: block;
 	background-color: rgb(212, 243, 179);
-	width: 250px;
+	width: 275px;
+	height: 3rem;
 }
 
 table tr td {
 	display: block;
+	width: 50px;
+	height: 3rem;
 }
 
 .input.is-primary {
@@ -43,11 +52,12 @@ table tr td {
 .steps {
 	display: block;
 	width: 100%;
-	height: 300px;
+	height: 400px;
 }
 
 .step-content {
 	display: none;
+	transition: 0.3s;
 }
 
 #prev,
@@ -95,7 +105,7 @@ table tr td {
 	color: rgb(212, 243, 179);
 	display: inline;
 	transition: 0.3s;
-	padding: 5px;
+	padding: 15px;
 }
 
 .dot:hover {
@@ -105,4 +115,21 @@ table tr td {
 
 .dot-active {
 	color: rgb(145, 221, 57);
+}
+
+.why-btn {
+	position: absolute;
+	right: 2%;
+	cursor: pointer;
+	display: inline;
+	padding: 5px;
+	border-radius: 5px;
+	color: white;
+	background-color: rgb(145, 221, 57);
+	transition: 0.3s;
+}
+
+.why-btn:hover {
+	background-color: rgb(127, 209, 32);
+	transition: 0.3s;
 }
