@@ -56,11 +56,7 @@
     <section class="section">
       <div class="container">
         <h2 class="title is-3 center">
-<<<<<<< HEAD
           To choose the better fit, we need our good friend <i>Mean Squared Error (MSE)</i>.
-=======
-          To choose the better fit, we need our best friend - Mean Squared Error (MSE).
->>>>>>> 46ddaf568081fe4af70a38879b8ce63cd9c88b35
         </h2>
         <h2 class="title is-4 center has-text-weight-normal">
           The mean squared error quantifies how closely a line/curve fits to a set of data by
@@ -105,44 +101,75 @@
         <h2 class="title is-3">
           Let's get into the calculations.
         </h2>
-        <h2 class="title is-4 has-text-weight-normal">
-          1. We can organize the data as follows:
-        </h2>
-        <table class="table" id="msetable">
-        </table>
-        <h2 class="title is-4 has-text-weight-normal">
-          2. We can view the two sets of y-coordinates as two vectors "y-hat" and "y":
-        </h2>
-        <h2 class="title is-4 center">
-          "y-hat" = &lt; 3, 4, 5, 6, 7, 8 &gt;
-        </h2>
-        <h2 class="title is-5 center has-text-weight-normal">
-          represents the predicted set of data points based on the model
-        </h2>
-        <h2 class="title is-4 center">
-          "y" =  &lt; 2, 3, 6, 4, 8, 9 &gt;
-        </h2>
-        <h2 class="title is-5 center has-text-weight-normal" >
-          represents the set of the original data points.
-        </h2>
-        <h2 class="title is-4 has-text-weight-normal">
-          3. Now, we want to generate a vector of all the errors.
-          To do so, we take the difference between "y-hat" and "y":
-        </h2>
-        <h2 class="title is-4 center">
-          "y-hat" - "y" =  &lt; 3-2, 4-3, 5-6, 6-4, 7-8, 8-9 &gt;
-        </h2>
-        <h2 class="title is-4 center">
-          "y-hat" - "y" =  &lt; 1, 1, -1, 2, -1, -1 &gt;
-        </h2>
-        <h2 class="title is-4 has-text-weight-normal">
-          4. To get the sum of the squared errors, we take the dot product of the difference vector with itself
-          (we're almost there!):
-        </h2>
-        <h2 class="title is-4 has-text-weight-normal">
-          5. Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
-          Therefore, we divide the sum of the squared errors by the number of data points -- in our case, 6.
-        </h2>
+        <div class="box steps">
+          <div class="step-content">
+            <h2 class="title is-4 has-text-weight-normal">
+              1. We can organize the data as follows:
+            </h2>
+            <table class="table" id="msetable">
+            </table>
+          </div>
+          <div class="step-content">
+            <h2 class="title is-4 has-text-weight-normal">
+              2. We can view the two sets of y-coordinates as two vectors "y-hat" and "y":
+            </h2>
+            <h2 class="title is-4 center">
+              "y-hat" = &lt; 3, 4, 5, 6, 7, 8 &gt;
+            </h2>
+            <h2 class="title is-5 center has-text-weight-normal">
+              represents the predicted set of data points based on the model
+            </h2>
+            <h2 class="title is-4 center">
+              "y" =  &lt; 2, 3, 6, 4, 8, 9 &gt;
+            </h2>
+            <h2 class="title is-5 center has-text-weight-normal" >
+              represents the set of the original data points.
+            </h2>
+          </div>
+          <div class="step-content">
+            <h2 class="title is-4 has-text-weight-normal">
+              3. Now, we want to generate a vector of all the errors.
+              To do so, we take the difference between "y-hat" and "y":
+            </h2>
+            <h2 class="title is-4 center">
+              "y-hat" - "y" =  &lt; 3-2, 4-3, 5-6, 6-4, 7-8, 8-9 &gt;
+            </h2>
+            <h2 class="title is-4 center">
+              "y-hat" - "y" =  &lt; 1, 1, -1, 2, -1, -1 &gt;
+            </h2>
+          </div>
+          <div class="step-content">
+            <h2 class="title is-4 has-text-weight-normal">
+              4. To get the sum of the squared errors, we take the dot product of the difference vector with itself
+              (we're almost there!):
+            </h2>
+          </div>
+          <div class="step-content">
+            <h2 class="title is-4 has-text-weight-normal">
+              5. Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
+              Therefore, we divide the sum of the squared errors by the number of data points -- in our case, 6.
+            </h2>
+          </div>
+          <h2 class="title is-4" id="prev" onclick="setStep(-1)">&#10094;</h2>
+          <h2 class="title is-4" id="next" onclick="setStep(1)">&#10095;</h2>
+        </div>
+        <div id="steps-nav">
+          <div class="title is-2 dot" onclick="jumpStep(0)">
+            .
+          </div>
+          <div class="title is-2 dot" onclick="jumpStep(1)">
+            .
+          </div>
+          <div class="title is-2 dot" onclick="jumpStep(2)">
+            .
+          </div>
+          <div class="title is-2 dot" onclick="jumpStep(3)">
+            .
+          </div>
+          <div class="title is-2 dot" onclick="jumpStep(4)">
+            .
+          </div>
+        </div>
       </div>
     </section>
     <section class="section">

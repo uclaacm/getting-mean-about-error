@@ -230,3 +230,47 @@ function checkMSE() {
 
   answerNotif.appendChild(dismissBtn);
 }
+
+// Calculation steps.
+// Navigate back and forth between steps using prev and next buttons or with the dots.
+let stepIndex = 0;
+let numSteps = 5;
+
+setStep(0);
+
+function setStep (n) {
+    stepIndex += n;
+    if (stepIndex === 0) {
+        document.getElementById("prev").style.display = "none";
+        document.getElementById("next").style.display = "block";
+    }
+    else if (stepIndex === numSteps - 1) {
+        document.getElementById("prev").style.display = "block";
+        document.getElementById("next").style.display = "none";
+    }
+    else {
+        document.getElementById("prev").style.display = "block";
+        document.getElementById("next").style.display = "block";
+    }
+    showStep(stepIndex);
+}
+
+function jumpStep (n) {
+    stepIndex = 0;
+    setStep(n);
+}
+    
+function showStep (n) {
+    let dots = document.getElementsByClassName("dot");
+    let steps = document.getElementsByClassName("step-content");
+    for (let i = 0; i < numSteps; i++) {
+        if (i !== n) {
+            steps[i].style.display = "none";
+            dots[i].className = "title is-2 dot";
+        }
+        else {
+            steps[i].style.display = "block";
+            dots[i].className = "title is-2 dot dot-active";
+        }
+    }
+}
