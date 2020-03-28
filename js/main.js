@@ -24,6 +24,23 @@ let errorGraphOne = {
         label: 'y - axis',
         domain: [0, 10]
     },
+    annotations:[
+        {x: 1},
+        {x: 2},
+        {x: 3},
+        {x: 4},
+        {x: 5},
+        {x: 6},
+        {y: 1},
+        {y: 2},
+        {y: 3},
+        {y: 4},
+        {y: 5},
+        {y: 6},
+        {y: 7},
+        {y: 8},
+        {y: 9}
+      ],
     data: [
         {
             fn: 'x + 2', color: 'green',
@@ -62,7 +79,16 @@ let errorGraphTwo = {
         {x: 4},
         {x: 5},
         {x: 6},
-    ],
+        {y: 1},
+        {y: 2},
+        {y: 3},
+        {y: 4},
+        {y: 5},
+        {y: 6},
+        {y: 7},
+        {y: 8},
+        {y: 9}
+      ],
     data: [
         {
             fn: '3x/2', color: 'red',
@@ -89,6 +115,7 @@ let errorGraphThree = {
     target: '#error-graph-three',
     width: 500,
     disableZoom: true,
+    //grid: true,
     xAxis: {
         label: 'x - axis',
         domain: [0, 7]
@@ -104,6 +131,15 @@ let errorGraphThree = {
       {x: 4},
       {x: 5},
       {x: 6},
+      {y: 1},
+      {y: 2},
+      {y: 3},
+      {y: 4},
+      {y: 5},
+      {y: 6},
+      {y: 7},
+      {y: 8},
+      {y: 9}
     ],
     data: [
         {
@@ -130,7 +166,6 @@ let errorGraphThree = {
 functionPlot(errorGraphOne);
 functionPlot(errorGraphTwo);
 functionPlot(errorGraphThree);
-//functionPlot(errorGraphFour);
 
 
 // Calculate mean-squared error; pass in 2D arrays for parameters.
@@ -199,7 +234,7 @@ for (let i = 0; i < xCoords.length; i++) {
 
 
 // Handle submit button in the "Now you try calculating" section.
-document.getElementById("submit").addEventListener("click", checkMSE);
+document.getElementById("mse-submit").addEventListener("click", checkMSE);
 
 let answerNotif = document.getElementById("check-answer");
 
@@ -273,4 +308,99 @@ function showStep (n) {
             dots[i].className = "title is-5 dot dot-active";
         }
     }
+}
+
+
+// Last section (real-world example).
+
+var coronaCases = [];
+var CoronaGraph = {};
+d3.csv("corona_cases.csv", function(data) {
+    for (var i = 0; i < data.length / 2; i++) {
+        coronaCases.push([2 * i, data[2 * i].World]);
+    }
+
+    coronaGraph = {
+        target: '#corona-graph',
+        width: 500,
+        disableZoom: true,
+        xAxis: {
+            label: 'Days Since 1/1',
+            domain: [0, 90]
+        },
+        yAxis: {
+            label: 'Total Cases',
+            domain: [0, 500000]
+        },
+        annotations:[
+            {x: 10},
+            {x: 20},
+            {x: 30},
+            {x: 40},
+            {x: 50},
+            {x: 60},
+            {x: 70},
+            {x: 80},
+            {y: 100000},
+            {y: 200000},
+            {y: 300000},
+            {y: 400000}
+        ],
+        data: [
+            {
+                points: coronaCases,
+                fnType: 'points',
+                graphType: 'scatter',
+                color: 'red',
+                attr: { "stroke-width": 3 }
+            },
+            {
+                fn: '30x^2', color: 'green',
+                attr: { "stroke-width": 2 }
+            }
+        ]
+    }
+    
+    functionPlot(coronaGraph);
+});
+
+
+// Handle submit button in the "real-world example" section.
+document.getElementById("function-submit").addEventListener("click", plotInputFn);
+
+let fnNotif = document.getElementById("check-function");
+
+function plotInputFn() {
+    let inputFn = document.getElementById("function-input").value;
+    coronaGraph.data[1].fn = inputFn;
+    functionPlot(coronaGraph);
+
+    // Calculate MSE.
+    let compiledFn = math.compile(inputFn);
+    let fnPoints = evaluateFn(compiledFn);
+    let msgTxt = "Your MSE is " + String(meanSquaredError(coronaCases, fnPoints)) + ".";
+
+    fnNotif.style.display = "block";
+    fnNotif.textContent = msgTxt;
+
+    var dismissBtn = document.createElement("button");
+    dismissBtn.className = "delete";
+
+    // Handle notification click.
+    dismissBtn.addEventListener("click", handleDismiss);
+
+    function handleDismiss() {
+        fnNotif.style.display = "none";
+    }
+
+    fnNotif.appendChild(dismissBtn);
+}
+
+function evaluateFn(fn) {
+    let points = [];
+    for (var i = 0; i < coronaCases.length; i++) {
+        let x = {x: coronaCases[i][0]};
+        points.push([x.x, fn.evaluate(x)]);
+    }
+    return points;
 }

@@ -203,7 +203,7 @@
               <div class="field">
               <input class="input is-success" type="text" id="mse-input" value="" />
               </div>
-              <button class="button" id="submit">Submit</button>
+              <button class="button" id="mse-submit">Submit</button>
               <div class="content">
                 <div class="notification" id="check-answer" style="display: none">
                 </div>
@@ -221,23 +221,41 @@
     </section>
     <section class="section">
       <div class="container">
+        <h2 class="title is-3">
+          Now, a real-world example.
+        </h2>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
         <div class="columns">
           <div class="column">
             <div class="content">
               <h2 class="title is-4 has-text-weight-normal">
-                Below, we have a graph with randomly generated data points.
+                Your goal is <i>to fit a function to best model the growth of Coronavirus in 2020</i>, from January 1 to March 26.
+              </h2>
+              <h2 class="title is-4 has-text-weight-normal">
+                The smaller your mean squared error, the better your trend line!
               </h2>
               <br>
-              <h2 class="title is-4 has-text-weight-normal">
-                We want to fit a line that will most closely follow the trend of these points.
-              </h2>
+              <label class="label">Your function:</label>
+              <div class="field">
+              <input class="input is-success" type="text" id="function-input" value="30x^2"/>
+              </div>
+              <button class="button" id="function-submit">Submit</button>
+              <div class="content">
+                <div class="notification" id="check-function" style="display: none">
+                </div>
+              </div>
             </div>
           </div>
           <div class="column">
             <div class="box">
-              <div id="error-graph-four">
+              <h2 class="title is-5 has-text-weight-bold">
+                World Corona Cases in 2020 (January 1 - March 26)
+              </h2>
+              <div id="corona-graph">
               </div>
-              <button class="button" id="refresh-data">Refresh Points</button>
             </div>
           </div>
         </div>
@@ -250,6 +268,7 @@
         </h5>
       </div>
     </footer>
+    <script src="js/math.min.js"></script>
     <script src="js/d3.min.js"></script>
     <script src="js/function-plot.js?v1.19.1"></script>
     <script src="js/main.js"></script>
