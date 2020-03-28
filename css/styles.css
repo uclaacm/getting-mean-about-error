@@ -1,9 +1,13 @@
-.hero-body {
-    background-color: rgb(145, 221, 57);
+body{
+	padding-top: 5rem;
 }
 
-.box {
-	text-align: center;
+.has-background-teachla-green{
+    background-color: #9CD931;
+}
+
+.has-border-bottom-green{
+	border-bottom: 1px solid #9CD931;
 }
 
 .center {

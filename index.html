@@ -4,26 +4,76 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MSE Lesson</title>
+    <title>Mean Squared Error Microlesson - ACM Teach LA Learning Labs</title>
+    <meta name="description" content="An ACM Teach LA microlesson focused on Mean Squared Error: what it is, how it works, and why it's used. Designed to be a supplement for linear regression in our AI & Machine Learning class.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+
     <link rel="stylesheet" href="css/bulma.min.css?v0.8.0">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
-  <body>
-    <section class="hero is-small is-primary">
-      <div class="hero-body">
+  <body id="top">
+    <nav class="navbar is-fixed-top is-spaced has-border-bottom-green" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#top">
+            <span class="title is-5">Getting Mean About Error</span>
+          </a>
+      
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbar-menu" class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="https://teachla.uclaacm.com">
+              <img src="img/logo-teachla.svg" />
+              <span class="title is-5">&nbsp;a Teach LA learning lab</span>
+              <!-- <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Linear Regression Lesson</strong>
+                </a>
+              </div> -->
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="hero-body has-background-teachla-green">
         <div class="container">
           <div class="columns">
-            <div class="column is-8-desktop is-offset-1-desktop">
-              <br>
-              <h1 class="title is-4 is-spaced">
-                A short lesson that will cover:
-              </h1>
-              <ul class="title is-2">
-                <li>Mean Squared Error (MSE)</li>
-              </ul>
-              <br>
+            <div class="column">
+              <div class="box">
+                <div class="content">
+                  <h1 class="title is-2">Let's get <u>mean</u> about error.</h1>
+                  <div class="title is-4">Mean Squared Error, that is.</div>
+                  <p>Questions we'll answer in this microlesson:</p>
+                  <ol class="has-text-weight-bold is-size-5">
+                    <li>What is Mean Squared Error?</li>
+                    <li>How do you calculate Mean Squared Error?</li>
+                    <li>When and why do we use Mean Squared Error?</li>
+                  </ol>
+                  <p>And, we'll have an opportunity to apply it to a real-life example: <span class="has-text-weight-bold">an example.</span></p>
+                  <div class="buttons">
+                    <a class="button is-dark" href="https://docs.google.com/presentation/d/16b5fIM80mlOgvMK4_ly5ESvD9a01t1rolWXHVtvi0YQ/">Accompanying Lesson: Linear Regression</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="box">
+                something should go here! maybe a graph w/ different fit lines and resulting errors!
+              </div>
             </div>
           </div>
         </div>
@@ -34,39 +84,52 @@
         <div class="columns">
           <div class="column">
             <div class="content">
-              <h2 class="title is-4 has-text-weight-normal">
-                On the right, we have a graph with a set of 6 data points.
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
-                We want to fit a line that will most closely follow the trend of these points.
-                We have two options - the red line, and the green line.
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
-                How should we determine which line is a better fit?
-              </h2>
+              <h2 class="title is-3">First, why do we care about error?</h2>
+              <p class="is-size-5">
+                Let's say we just performed an experiment and collected some data (shown on the right).
+              </p>
+              <p class="is-size-5">
+                We want to figure out the relationship between our points. So, we've made two predictions: the red line and the green line. But, how can we know which one is better?
+              </p>
+              <p class="is-size-5">
+                We can look at the <span class="has-text-weight-bold">error.</span> In statistics, <span class="has-text-weight-bold">error</span> is a measure of how wrong a prediction is.<span class="has-text-weight-bold">The better the prediction, the smaller the error</span>. So, we should pick the prediction with the smaller error.
+              </p>
             </div>
           </div>
           <div class="column">
-            <div class="box">
-              <div id="error-graph-one">
-              </div>
+            <div id="error-graph-one">
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section has-background-teachla-green">
       <div class="container">
-        <h2 class="title is-3 center">
-          To choose the better fit, we need our good friend <i>Mean Squared Error (MSE)</i>.
-        </h2>
-        <h2 class="title is-4 center has-text-weight-normal">
-          The mean squared error quantifies how closely a line/curve fits to a set of data by
-          measuring the average squared difference between our data and the expected values.
-        </h2>
-        <h2 class="title is-3 center mathformat">
-          \[MSE = \frac{1}{n} \sum\limits_{i=1}^n (y-\hat y)^2 \]
-        </h2>
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <div class="content">
+                <h2 class="title is-3">
+                  Introducing <u>Mean Squared Error</u>
+                </h2>
+                <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> is one way we can calculate the error of a prediction. It's not too tricky; here's how it works:</p>
+                <ol class="is-size-5">
+                  <li>Start with an error of 0</li>
+                  <li>For each point, take the difference between the collected data and our prediction; square it!</li>
+                  <li>Add it to our error, and repeat for each point!</li>
+                </ol>
+                <p class="is-size-5">That wasn't too bad, wasn't it? Sometimes (like in textbooks), you'll see it in more complicated math notation:</p>
+                <div>
+                  \[MSE = \frac{1}{n} \sum\limits_{i=1}^n (y-\hat y)^2 \]
+                </div>
+                <p class="is-size-5">But don't be scared! Now, you know what it means!</p>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            something can go here -> maybe a quick trial calculation before the example, or some notes on MSE (e.g. it's always positive!)
+          </div>
+        </div>
       </div>
     </section>
     <section class="section">

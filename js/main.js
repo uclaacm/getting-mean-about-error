@@ -13,6 +13,7 @@ for (let i = 0; i < xCoords.length; i++) {
 }
 
 let errorGraphOne = {
+    title: "A relevant title!",
     target: '#error-graph-one',
     width: 500,
     disableZoom: true,
