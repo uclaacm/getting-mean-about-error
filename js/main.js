@@ -168,6 +168,77 @@ functionPlot(errorGraphOne);
 functionPlot(errorGraphTwo);
 functionPlot(errorGraphThree);
 
+let notesGraphOne = {
+    target: '#notes-graph-one',
+    width: 225,
+    height: 180,
+    disableZoom: true,
+    xAxis: {
+        label: 'x - axis',
+        domain: [0, 3]
+    },
+    yAxis: {
+        label: 'y - axis',
+        domain: [0, 3]
+    },
+    annotations:[
+        {x: 1},
+        {x: 2},
+        {y: 1},
+        {y: 2}
+      ],
+    data: [
+        {
+            fn: 'x', color: 'green',
+            attr: { "stroke-width": 2 }
+        },
+        {
+            points: [[0.5,0.7],[1,1.2],[1.5,1.7],[2,2.2],[2.5,2.7]],
+            fnType: 'points',
+            graphType: 'scatter',
+            color: 'blue',
+            attr: { "stroke-width": 3 }
+        }
+    ]
+}
+
+let notesGraphTwo = {
+    target: '#notes-graph-two',
+    width: 225,
+    height: 180,
+    disableZoom: true,
+    xAxis: {
+        label: 'x - axis',
+        domain: [0, 3]
+    },
+    yAxis: {
+        label: 'y - axis',
+        domain: [0, 3]
+    },
+    annotations:[
+        {x: 1},
+        {x: 2},
+        {y: 1},
+        {y: 2}
+      ],
+    data: [
+        {
+            fn: 'x', color: 'green',
+            attr: { "stroke-width": 2 }
+        },
+        {
+            points: [[0.5,0.3],[1,1.2],[1.5,1.3],[2,2.2],[2.5,2.3]],
+            fnType: 'points',
+            graphType: 'scatter',
+            color: 'blue',
+            attr: { "stroke-width": 3 }
+        }
+    ]
+}
+
+functionPlot(notesGraphOne);
+functionPlot(notesGraphTwo);
+
 
 // Calculate mean-squared error; pass in 2D arrays for parameters.
 // MSE = 1.5 for y = x+2; MSE = 1.125 for y = 3x/2
@@ -405,3 +476,14 @@ function evaluateFn(fn) {
     }
     return points;
 }
+
+
+// ANIMATIONS.
+
+// anime({
+//     targets: 'title',
+//     translateX: 250,
+//     rotate: '1turn',
+//     backgroundColor: '#FFF',
+//     duration: 8000
+//   });

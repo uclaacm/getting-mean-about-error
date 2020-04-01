@@ -113,20 +113,48 @@
                 </h2>
                 <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> is one way we can calculate the error of a prediction. It's not too tricky; here's how it works:</p>
                 <ol class="is-size-5">
-                  <li>Start with an error of 0</li>
+                  <li>Start with an error of 0.</li>
                   <li>For each point, take the difference between the collected data and our prediction; square it!</li>
                   <li>Add it to our error, and repeat for each point!</li>
+                  <li>Divide this sum by the number of points to get the average!</li>
                 </ol>
                 <p class="is-size-5">That wasn't too bad, wasn't it? Sometimes (like in textbooks), you'll see it in more complicated math notation:</p>
                 <div>
-                  \[MSE = \frac{1}{n} \sum\limits_{i=1}^n (y-\hat y)^2 \]
+                  \[ MSE = \frac{1}{n} \sum\limits_{i=1}^n (y-\hat y)^2 \]
                 </div>
                 <p class="is-size-5">But don't be scared! Now, you know what it means!</p>
               </div>
             </div>
           </div>
           <div class="column">
-            something can go here -> maybe a quick trial calculation before the example, or some notes on MSE (e.g. it's always positive!)
+            <div class="box">
+              <div class="content">
+                <h2 class="title is-4">
+                  Some extra notes:
+                </h2>
+                <ol class="is-size-6">
+                  <li>
+                    MSE is <b> always positive</b>. So, whether your prediction is higher or lower than your data point will have no bearing on your error!
+                    <div>
+                      \[ (5-3)^2=(3-5)^2=4 \]
+                    </div>
+                    So basically, the following two graphs will have the <b>same</b> MSE because every point is equally far from the prediction line.
+                    <div id="notes-graph-one" class="notes-graph">
+                    </div>
+                    <div id="notes-graph-two" class="notes-graph">
+                    </div>
+                  </li>
+                  <li>
+                    Because we are <b>squaring</b> the differences, bigger differences are heavily (nonlinearly) punished!
+                    <div>
+                      \[ (5-3)^2=4 \]
+                      \[ (6-3)^2=9 \]
+                    </div>
+                    In this example, even though 5 and 6 are just <b>1 unit apart</b>, their squared errors, when compared against 3, are <b>5 units apart</b>.
+                  </li>
+                </ol>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -173,7 +201,7 @@
             <h2 class="title is-4 has-text-weight-normal">
               Referring to the graph, we can organize the data as follows:
             </h2>
-            <table class="table center" id="msetable">
+            <table class="table has-text-centered" id="msetable">
             </table>
           </div>
           <div class="step-content">
@@ -181,16 +209,16 @@
               We can view the two sets of \(y\)-coordinates as two vectors \(\hat y\) and \(y\):
               <span class="title is-6 why-btn"><b>Why?</b></span>
             </h2>
-            <h2 class="title is-4 center mathformat">
+            <h2 class="title is-4 has-text-centered mathformat">
              \[\hat y\ = \: < 1.5,\: 3, \:4.5, \:6, \:7.5, \:9 > \]
             </h2>
-            <h2 class="title is-5 center has-text-weight-normal">
+            <h2 class="title is-5 has-text-centered has-text-weight-normal">
               represents the predicted set of data points based on the model.
             </h2>
-            <h2 class="title is-4 center mathformat">
+            <h2 class="title is-4 has-text-centered mathformat">
               \[y\ =  \: < 2, \:3, \:6, \:4,\: 8,\: 9 > \]
             </h2>
-            <h2 class="title is-5 center has-text-weight-normal" >
+            <h2 class="title is-5 has-text-centered has-text-weight-normal" >
               represents the set of the original data points.
             </h2>
           </div>
@@ -199,7 +227,7 @@
               Now, we want to generate a vector of all the errors.
               To do so, we take the difference between \(\hat y\) and \(y\):
             </h2>
-            <h2 class="title is-4 center mathformat">
+            <h2 class="title is-4 has-text-centered mathformat">
               \[\hat y\ - y\]
               \[ = \: < 1.5-2, \:3-3, \:4.5-6, \:6-4, \:7.5-8, \:9-9 > \]
               \[ = \: < -0.5, \: 0, -1.5,\:  2, -0.5, \: 0 > \]
@@ -210,7 +238,7 @@
               To get the sum of the squared errors, we take the dot product of the difference vector with itself
               (we're almost there!):
             </h2>
-            <h2 class="title is-4 center mathformat">
+            <h2 class="title is-4 has-text-centered mathformat">
               \[(\hat y  - y) \cdot (\hat y  - y) \]
               \[= (-0.5)^2 + 0^2  + (-1.5)^2 + 2^2 + (-0.5)^2 + 0^2 \]
               \[= 6.75\]
@@ -221,7 +249,7 @@
               Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
               Therefore, we divide the sum of the squared errors by the number of data points -- in our case, 6.
             </h2>
-            <h2 class="title is-3 center mathformat">
+            <h2 class="title is-3 has-text-centered mathformat">
              \[MSE = 6.75 \div 6 = 1.125\]
             </h2>
           </div>
@@ -333,6 +361,7 @@
     <script src="js/math.min.js"></script>
     <script src="js/d3.min.js"></script>
     <script src="js/function-plot.js?v1.19.1"></script>
+    <script src="js/anime.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

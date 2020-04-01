@@ -1,13 +1,21 @@
-body{
+body {
 	padding-top: 5rem;
 }
 
-.has-background-teachla-green{
+.has-background-teachla-green {
     background-color: #9CD931;
 }
 
-.has-border-bottom-green{
+.has-border-bottom-green {
 	border-bottom: 1px solid #9CD931;
+}
+
+.notes-graph {
+	display: inline;
+}
+
+.box {
+	height: 100%;
 }
 
 .center {
@@ -41,10 +49,6 @@ table tr td {
 	height: 3rem;
 }
 
-.input.is-primary {
-	border-color: rgb(145, 221, 57);
-}
-
 .notification {
 	margin-top: 10px;
 	background-color: rgb(145, 221, 57);
@@ -70,7 +74,7 @@ table tr td {
 
 #prev,
 #next {
-	color: rgb(145, 221, 57);
+	color: #9CD931;
 	cursor: pointer;
 	position: absolute;
 	top: 50%;
@@ -95,7 +99,7 @@ table tr td {
 #prev:hover,
 #next:hover {
 	color: white;
-	background-color: rgb(145, 221, 57);
+	background-color: #9CD931;
 	transition: 0.3s;
 }
 
@@ -117,12 +121,12 @@ table tr td {
 }
 
 .dot:hover {
-	color: rgb(145, 221, 57);
+	color: #9CD931;
 	transition: 0.3s;
 }
 
 .dot-active {
-	color: rgb(145, 221, 57);
+	color: #9CD931;
 }
 
 .why-btn {
@@ -133,7 +137,7 @@ table tr td {
 	padding: 5px;
 	border-radius: 5px;
 	color: white;
-	background-color: rgb(145, 221, 57);
+	background-color: #9CD931;
 	transition: 0.3s;
 }
 
