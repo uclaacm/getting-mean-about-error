@@ -85,19 +85,25 @@
             <div class="content">
               <h2 class="title is-3">First, why do we care about error?</h2>
               <p class="is-size-5">
-                Let's say we just performed an experiment and collected some data (shown on the right).
+                Let's say we just performed an experiment and collected some data (<b>Figure 1</b>).
               </p>
               <p class="is-size-5">
-                We want to figure out the relationship between our points. So, we've made two predictions: the red line and the green line. But, how can we know which one is better?
+                We want to figure out the relationship between our points. So, we've made two predictions: the <i style="color: red">red</i>
+                line and the <i style="color: green">green</i> line. But, how can we know which one is better?
               </p>
               <p class="is-size-5">
-                We can look at the <span class="has-text-weight-bold">error.</span> In statistics, <span class="has-text-weight-bold">error</span> is a measure of how wrong a prediction is.<span class="has-text-weight-bold">The better the prediction, the smaller the error</span>. So, we should pick the prediction with the smaller error.
+                We can look at the <span class="has-text-weight-bold">error.</span> In statistics, <span class="has-text-weight-bold">error</span>
+                is a measure of how wrong a prediction is.<span class="has-text-weight-bold"> The better the prediction, the smaller the error</span>.
+                So, we should pick the prediction with the smaller error.
               </p>
             </div>
           </div>
           <div class="column">
-            <div id="error-graph-one">
+            <div id="error-graph-one" class="has-text-centered">
             </div>
+            <h2 class="title is-5 has-text-centered">
+              Figure 1
+            </h2>
           </div>
         </div>
       </div>
@@ -109,7 +115,7 @@
             <div class="box">
               <div class="content">
                 <h2 class="title is-3">
-                  Introducing <u>Mean Squared Error</u>
+                  Introducing <u>Mean Squared Error</u>.
                 </h2>
                 <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> is one way we can calculate the error of a prediction. It's not too tricky; here's how it works:</p>
                 <ol class="is-size-5">
@@ -164,113 +170,118 @@
         <div class="columns">
           <div class="column">
             <div class="content">
-              <h2 class="title is-4">
+              <h2 class="title is-3">
                 Let's look at each line separately, starting with the red line.
               </h2>
-              <h2 class="title is-4 has-text-weight-normal">
+              <p class="is-size-5">
                 The equation of the line is:
-              </h2>
-              <h2 class="title is-4 ">
+              </p>
+              <p class="is-size-5">
                 \[y = \frac{3}{2}x \]
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
-                Notice the two sets of data points on the graph to the right.
-                The blue points are our original data values, and the black points are our expected values based on the line equation.
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
-                With MSE, we will be dealing with the vertical distances between the two sets of data points.
-              </h2>
+              </p>
+              <p class="is-size-5">
+                Notice the <b>two sets of data points</b> on the graph to the right.
+                The <i style="color:blue">blue</i> points are our <b>original data values</b>, and the <i>black</i> points are our <b>expected values</b> based on the line equation.
+              </p>
+              <p class="is-size-5">
+                With MSE, we will be dealing with the <b>vertical distances</b> between the two sets of data points.
+              </p>
             </div>
           </div>
           <div class="column">
-            <div class="box">
-              <div id="error-graph-two">
-              </div>
+            <div id="error-graph-two" class="has-text-centered">
             </div>
+            <h2 class="title is-5 has-text-centered">
+              Figure 1a
+            </h2>
           </div>
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="container">
-        <h2 class="title is-3">
-          Let's get into the calculations.
-        </h2>
-        <div class="box steps">
-          <div class="step-content">
-            <h2 class="title is-4 has-text-weight-normal">
-              Referring to the graph, we can organize the data as follows:
+    <section class="hero">
+      <div class="hero-body has-background-teachla-green">
+        <div class="container">
+          <div class="box" id="calculations">
+            <h2 class="title is-3">
+              Now, the math.
             </h2>
-            <table class="table has-text-centered" id="msetable">
-            </table>
-          </div>
-          <div class="step-content">
-            <h2 class="title is-4 has-text-weight-normal">
-              We can view the two sets of \(y\)-coordinates as two vectors \(\hat y\) and \(y\):
-              <span class="title is-6 why-btn"><b>Why?</b></span>
-            </h2>
-            <h2 class="title is-4 has-text-centered mathformat">
-             \[\hat y\ = \: < 1.5,\: 3, \:4.5, \:6, \:7.5, \:9 > \]
-            </h2>
-            <h2 class="title is-5 has-text-centered has-text-weight-normal">
-              represents the predicted set of data points based on the model.
-            </h2>
-            <h2 class="title is-4 has-text-centered mathformat">
-              \[y\ =  \: < 2, \:3, \:6, \:4,\: 8,\: 9 > \]
-            </h2>
-            <h2 class="title is-5 has-text-centered has-text-weight-normal" >
-              represents the set of the original data points.
-            </h2>
-          </div>
-          <div class="step-content">
-            <h2 class="title is-4 has-text-weight-normal">
-              Now, we want to generate a vector of all the errors.
-              To do so, we take the difference between \(\hat y\) and \(y\):
-            </h2>
-            <h2 class="title is-4 has-text-centered mathformat">
-              \[\hat y\ - y\]
-              \[ = \: < 1.5-2, \:3-3, \:4.5-6, \:6-4, \:7.5-8, \:9-9 > \]
-              \[ = \: < -0.5, \: 0, -1.5,\:  2, -0.5, \: 0 > \]
-            </h2>
-          </div>
-          <div class="step-content">
-            <h2 class="title is-4 has-text-weight-normal">
+            <p class="is-size-4 has-text-centered" id="step-text">
+            </p>
+            <p class="is-size-4 has-text-centered anime-1">
+              \[ (1,\:2)<!--\:(2,3), \:(3,6), \:(4,4), \:(5,8), \:(6,9)--> \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-2 go-up">
+              \[ 2 \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-3 go-up">
+              \[ 1.5 \]
+              </p>
+            <p class="is-size-4 has-text-centered anime-4 go-up">
+              We can now subtract the two to find the distance,<br>or "error," for the first point.
+            </p>
+            <p class="is-size-4 has-text-centered anime-5 fade">
+              \[ 2 - 1.5 = 0.5 \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-5 fade">
+              Repeating this for all six points, we get the following errors:<br>
+            </p>
+            <p class="is-size-4 has-text-centered anime-5 stay">
+              \[ 0.5 \:\:\:\:\:\:0 \:\:\:\:\:\:1.5 \:\:\:-2 \:\:\:\:\:\:0.5 \:\:\:\:\:\:0 \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-6">
+              Now, we square these errors and sum them (almost there!). 
+            </p>
+            <p class="is-size-4 has-text-centered anime-6">
+              \[ (-0.5)^2 + 0^2  + (-1.5)^2 + 2^2 + (-0.5)^2 + 0^2 \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-6">
+              \[ = 6.75 \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-7">
+              Finally, since we want to take the mean of the squared errors,<br>
+              we divide by the number of data points -- in our case, 6.
+            </p>
+            <p class="is-size-4 has-text-centered anime-7">
+              \[ 6.75 \div 6 \]
+            </p>
+            <p class="is-size-3 has-text-centered anime-7">
+              \[ = 1.125\]
+            </p>
+            <!-- VECTOR NOTATION
+            <p class="is-size-4 has-text-centered anime-3 go-up" style="opacity: none">
+              \[\hat y\ = \: < 1.5,\: 3, \:4.5, \:6, \:7.5, \:9 > \]
+            </p>
+            <p class="is-size-5 has-text-centered anime-4 go-up" style="opacity: none">
+              We now have two vectors, containing the y-values of both data sets.
+            </p>
+            <p class="is-size-5 has-text-centered anime-5 fade" style="opacity: none">
+              To find their vertical distances, we take the difference between \(\hat y\) and \(y\):
+            </p>
+            <p class="is-size-4 has-text-centered anime-5 fade" style="opacity: none">
+              \[ y - \hat y \]
+              \[ = \: < 2-1.5, \:3-3, \:6-4.5, \:4-6, \:8-7.5, \:9-9 > \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-5 stay" style="opacity: none">
+              \[ = \: < 0.5, \:0, \:1.5, -2, \:0.5, \:0 > \]
+            </p>
+            <p class="is-size-4 has-text-centered anime-6" style="opacity: none">
               To get the sum of the squared errors, we take the dot product of the difference vector with itself
               (we're almost there!):
-            </h2>
-            <h2 class="title is-4 has-text-centered mathformat">
-              \[(\hat y  - y) \cdot (\hat y  - y) \]
+            </p>
+            <p class="is-size-5">
+              \[(\hat y - y) \cdot (\hat y - y) \]
               \[= (-0.5)^2 + 0^2  + (-1.5)^2 + 2^2 + (-0.5)^2 + 0^2 \]
               \[= 6.75\]
-            </h2>
-          </div>
-          <div class="step-content">
-            <h2 class="title is-4 has-text-weight-normal">
+            </p>
+            <p class="is-size-5">
               Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
               Therefore, we divide the sum of the squared errors by the number of data points -- in our case, 6.
-            </h2>
-            <h2 class="title is-3 has-text-centered mathformat">
-             \[MSE = 6.75 \div 6 = 1.125\]
-            </h2>
-          </div>
-          <h2 class="title is-4" id="prev" onclick="setStep(-1)">&#10094;</h2>
-          <h2 class="title is-4" id="next" onclick="setStep(1)">&#10095;</h2>
-        </div>
-        <div id="steps-nav">
-          <div class="title is-5 dot" onclick="jumpStep(0)">
-            <b>1</b>
-          </div>
-          <div class="title is-5 dot" onclick="jumpStep(1)">
-            <b>2</b>
-          </div>
-          <div class="title is-5 dot" onclick="jumpStep(2)">
-            <b>3</b>
-          </div>
-          <div class="title is-5 dot" onclick="jumpStep(3)">
-            <b>4</b>
-          </div>
-          <div class="title is-5 dot" onclick="jumpStep(4)">
-            <b>5</b>
+            </p>
+            <p class="is-size-5">
+            \[MSE = 6.75 \div 6 = 1.125\]
+            </p>-->
+            <button class="button is-dark" id="prev" onclick="setStep(-1, true)">Back</h2>
+            <button class="button is-dark" id="next" onclick="setStep(1, false)">Next</h2>
           </div>
         </div>
       </div>
@@ -301,61 +312,66 @@
             </div>
           </div>
           <div class="column">
-            <div class="box">
-              <div id="error-graph-three">
-              </div>
+            <div id="error-graph-three" class="has-text-centered">
             </div>
+            <h2 class="title is-5 has-text-centered">
+              Figure 1b
+            </h2>
           </div>
         </div>
       </div>
     </section>
-    <section class="section">
-      <div class="container">
-        <h2 class="title is-3">
-          Now, a real-world example.
-        </h2>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div class="column">
-            <div class="content">
-              <h2 class="title is-4 has-text-weight-normal">
-                Your goal is <i>to fit a function to best model the growth of Coronavirus in 2020</i>, from January 1 to March 26.
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
-                The smaller your mean squared error, the better your trend line!
-              </h2>
-              <br>
-              <label class="label">Your function:</label>
-              <div class="field">
-              <input class="input is-success" type="text" id="function-input" value="30x^2"/>
-              </div>
-              <button class="button" id="function-submit">Submit</button>
-              <div class="content">
-                <div class="notification" id="check-function" style="display: none">
+    <section class="hero">
+      <div class="hero-body has-background-teachla-green">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="box">
+                <div class="content">
+                  <h2 class="title is-3">
+                    Now, a <u>real-world example</u>.
+                  </h2>
+                  <p class="is-size-5">
+                    Your goal is <b>to fit a function to best model Moore's Law</b>.
+                  </p>
+                  <p class="is-size-6">
+                    This law was the observation that the number of transistors that could fit on a microchip
+                    would double every two years (first proclaimed in 1965).
+                  </p>              
+                  <p class="is-size-5">
+                    The smaller your mean squared error, the better your trend line!
+                  </p>
+                  <br>
+                  <label class="label">Your function:</label>
+                  <div class="field">
+                    <input class="input is-success" type="text" id="function-input" value="300x^4"/>
+                  </div>
+                  <button class="button" id="function-submit">Submit</button>
+                  <div class="content">
+                    <div class="notification" id="check-function" style="display: none">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="column">
-            <div class="box">
-              <h2 class="title is-5 has-text-weight-bold">
-                World Corona Cases in 2020 (January 1 - March 26)
-              </h2>
-              <div id="corona-graph">
+            <div class="column">
+              <div class="box">
+                <div id="data-graph" class="has-text-centered">
+                </div>
+                <h2 class="title is-5 has-text-centered">
+                  Moore's Law (1971-2018)
+                </h2>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <footer class="footer has-text-centered">
+    <footer class="footer has-text-centered is-dark">
       <div class="content">
-        <h5>
-          more resources.
-        </h5>
+        <p class="is-size-6">
+          This website is brought to you by ACM Teach Zoom.
+        </p>
       </div>
     </footer>
     <script src="js/math.min.js"></script>
