@@ -50,15 +50,24 @@ table tr td {
 }
 
 .notification {
-	margin-top: 10px;
 	background-color: rgb(145, 221, 57);
 	color: white;
 	transition: 0.3s;
+	padding: 0.5rem 2.5rem 0.5rem 1.5rem;
 }
 
 .notification:hover {
 	background-color: rgb(127, 209, 32);
 	transition: 0.3s;
+}
+
+.check-submit{
+	float:left;
+	margin-bottom: 15px;
+}
+
+.check-response{
+	float:right;
 }
 
 .steps {

@@ -13,7 +13,7 @@ for (let i = 0; i < xCoords.length; i++) {
 }
 
 let errorGraphOne = {
-    title: "A relevant title!",
+    title: "An Example!",
     target: '#error-graph-one',
     width: 500,
     disableZoom: true,
@@ -305,6 +305,49 @@ for (let i = 0; i < xCoords.length; i++) {
 }
 
 
+// Check submitted answers in "Now you try calculating" section.
+
+let submissions = document.getElementsByClassName("check-submit");
+let notifTxt = document.getElementsByClassName("check-response");
+
+submissions[0].addEventListener("click", function() {checkAns(0);});
+submissions[1].addEventListener("click", function() {checkAns(1);});
+submissions[2].addEventListener("click", function() {checkAns(2);});
+submissions[3].addEventListener("click", function() {checkAns(3);});
+submissions[4].addEventListener("click", function() {checkAns(4);});
+submissions[5].addEventListener("click", function() {checkAns(5);});
+
+function checkAns(i) {
+  notifTxt[i].style.display = "block";
+  notifTxt[i].align = "right";
+
+  let msgTxt1;
+  let answers = document.getElementsByClassName("check-input");
+  let ansInput = answers[i].value;
+
+  if (ansInput === String((idealPointsOne[i][1]-yCoords[i])**2)) {
+      msgTxt1 = "Correct!";
+  }
+  else {
+      msgTxt1 = "Incorrect!";
+  }
+  notifTxt[i].textContent = msgTxt1;
+
+  var dismissBtn1 = document.createElement("button");
+  dismissBtn1.className = "delete";
+
+  // Handle answer-notification click.
+  dismissBtn1.addEventListener("click", handleDismiss);
+
+  function handleDismiss() {
+    notifTxt[i].style.display = "none";
+  }
+
+  notifTxt[i].appendChild(dismissBtn1);
+}
+
+
+
 // Handle submit button in the "Now you try calculating" section.
 document.getElementById("mse-submit").addEventListener("click", checkMSE);
 
@@ -366,7 +409,7 @@ function jumpStep (n) {
     stepIndex = 0;
     setStep(n);
 }
-    
+
 function showStep (n) {
     let dots = document.getElementsByClassName("dot");
     let steps = document.getElementsByClassName("step-content");
@@ -432,7 +475,7 @@ d3.csv("corona_cases.csv", function(data) {
             }
         ]
     }
-    
+
     functionPlot(coronaGraph);
 });
 

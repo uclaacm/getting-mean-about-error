@@ -24,14 +24,14 @@
           <a class="navbar-item" href="#top">
             <span class="title is-5">Getting Mean About Error</span>
           </a>
-      
+
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-      
+
         <div id="navbar-menu" class="navbar-menu">
           <div class="navbar-end">
             <a class="navbar-item" href="https://teachla.uclaacm.com">
@@ -114,8 +114,8 @@
                 <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> is one way we can calculate the error of a prediction. It's not too tricky; here's how it works:</p>
                 <ol class="is-size-5">
                   <li>Start with an error of 0.</li>
-                  <li>For each point, take the difference between the collected data and our prediction; square it!</li>
-                  <li>Add it to our error, and repeat for each point!</li>
+                  <li>For each point, take the difference between the collected data and our prediction; square it.</li>
+                  <li>Add it to our error, and repeat for each point.</li>
                   <li>Divide this sum by the number of points to get the average!</li>
                 </ol>
                 <p class="is-size-5">That wasn't too bad, wasn't it? Sometimes (like in textbooks), you'll see it in more complicated math notation:</p>
@@ -138,7 +138,7 @@
                     <div>
                       \[ (5-3)^2=(3-5)^2=4 \]
                     </div>
-                    So basically, the following two graphs will have the <b>same</b> MSE because every point is equally far from the prediction line.
+                    So basically, the following two graphs will have the <b>same</b> MSE because every point is equally far from the prediction line. <br>
                     <div id="notes-graph-one" class="notes-graph">
                     </div>
                     <div id="notes-graph-two" class="notes-graph">
@@ -165,21 +165,21 @@
           <div class="column">
             <div class="content">
               <h2 class="title is-4">
-                Let's look at each line separately, starting with the red line.
+                To compare the MSE in the example, let's look at each line separately, starting with the red line.
               </h2>
-              <h2 class="title is-4 has-text-weight-normal">
+              <p class="is-size-5">
                 The equation of the line is:
-              </h2>
-              <h2 class="title is-4 ">
+              </p>
+              <p class="is-size-4">
                 \[y = \frac{3}{2}x \]
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
+              </p>
+              <p class="is-size-5">
                 Notice the two sets of data points on the graph to the right.
                 The blue points are our original data values, and the black points are our expected values based on the line equation.
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
+              </p>
+              <p class="is-size-5">
                 With MSE, we will be dealing with the vertical distances between the two sets of data points.
-              </h2>
+              </p>
             </div>
           </div>
           <div class="column">
@@ -279,31 +279,147 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-            <div class="content">
-              <h2 class="title is-4">
-                Now is your turn to calculate!
-              </h2>
-              <h2 class="title is-4 has-text-weight-normal">
-                Let's try applying the previous steps to the second line of fit,
-              </h2>
-              <h2 class="title is-4">
-                \[y = x + 2\]
-              </h2>
-              <label class="label">Calculated MSE:</label>
-              <div class="field">
-              <input class="input is-success" type="text" id="mse-input" value="" />
-              </div>
-              <button class="button" id="mse-submit">Submit</button>
               <div class="content">
-                <div class="notification" id="check-answer" style="display: none">
+                <h2 class="title is-4">
+                  Now is your turn to calculate!
+                </h2>
+                <p class="is-size-5">
+                  Let's try applying the previous steps to the second line of fit,
+                </p>
+                <p class="is-size-4">
+                  \[y = x + 2\]
+                </p>
+                <div id="error-graph-three">
                 </div>
+                <p class="is-size-5">
+                  Calculating the MSE of a line might seem like a daunting task. But don't worry! All we need to do is take <span class="has-text-weight-bold">one step at a time</span>. Use the box to the right to help you!
+                </p>
+                <label class="label">Calculated MSE:</label>
+                <div class="field">
+                <input class="input is-success" type="text" id="mse-input" value="" />
+                </div>
+
+                <button class="button" id="mse-submit">Submit</button>
+                <div class="content">
+                  <div class="notification" id="check-answer" style="display: none">
+                  </div>
+                </div>
+
               </div>
-            </div>
           </div>
+
           <div class="column">
             <div class="box">
-              <div id="error-graph-three">
+              <p class="is-size-5 has-text-weight-bold">
+                Point 1
+              </p>
+              <p class="is-size-6">
+                Expected Value: (1,3); Actual Value: (1,2)<br><br>
+              </p>
+
+              <label class="label">Squared difference for Point 1:</label>
+              <div class="field">
+                <input class="input is-success check-input" type="text" value="" />
               </div>
+              <button class="button check-submit">Submit</button>
+              <div class="content">
+                <div class="notification check-response" style="display: none">
+                </div>
+              </div>
+
+
+              <p class="is-size-5 has-text-weight-bold" style="clear:both">
+                Point 2
+              </p>
+              <p class="is-size-6">
+                Expected Value: (2,4); Actual Value: (2,3)<br><br>
+              </p>
+
+              <label class="label">Squared difference for Point 2:</label>
+              <div class="field">
+                <input class="input is-success check-input" type="text" value="" />
+              </div>
+              <button class="button check-submit">Submit</button>
+              <div class="content">
+                <div class="notification check-response" style="display: none">
+                </div>
+              </div>
+
+              <p class="is-size-5 has-text-weight-bold" style="clear:both">
+                Point 3
+              </p>
+              <p class="is-size-6">
+                Expected Value: (3,5); Actual Value: (3,6)<br><br>
+              </p>
+
+              <label class="label">Squared difference for Point 3:</label>
+              <div class="field">
+                <input class="input is-success check-input" type="text" value="" />
+              </div>
+
+              <button class="button check-submit">Submit</button>
+              <div class="content">
+                <div class="notification check-response" style="display: none">
+                </div>
+              </div>
+
+              <p class="is-size-5 has-text-weight-bold" style="clear:both">
+                Point 4
+              </p>
+              <p class="is-size-6">
+                Expected Value: (4,6); Actual Value: (4,4)<br><br>
+              </p>
+
+              <label class="label">Squared difference for Point 4:</label>
+              <div class="field">
+                <input class="input is-success check-input" type="text" value="" />
+              </div>
+              <button class="button check-submit">Submit</button>
+              <div class="content">
+                <div class="notification check-response" style="display: none">
+                </div>
+              </div>
+
+              <p class="is-size-5 has-text-weight-bold" style="clear:both">
+                Point 5
+              </p>
+              <p class="is-size-6">
+                Expected Value: (5,7); Actual Value: (5,8)<br><br>
+              </p>
+
+              <label class="label">Squared difference for Point 5:</label>
+              <div class="field">
+                <input class="input is-success check-input" type="text" value="" />
+              </div>
+              <button class="button check-submit">Submit</button>
+              <div class="content">
+                <div class="notification check-response" style="display: none">
+                </div>
+              </div>
+
+              <p class="is-size-5 has-text-weight-bold" style="clear:both">
+                Point 6
+              </p>
+              <p class="is-size-6">
+                Expected Value: (6,8); Actual Value: (6,9)<br><br>
+              </p>
+
+              <label class="label">Squared difference for Point 6:</label>
+              <div class="field">
+                <input class="input is-success check-input" type="text" value="" />
+              </div>
+              <div class="alert">
+                <button class="button check-submit">Submit</button>
+                <div class="content">
+                  <div class="notification check-response" style="display: none" >
+                  </div>
+                </div>
+              </div>
+
+              <p class="is-size-6" style="clear:both">
+                Great job! Now return to the box on the left to complete your answer!
+              </p>
+
             </div>
           </div>
         </div>
@@ -322,7 +438,7 @@
           <div class="column">
             <div class="content">
               <h2 class="title is-4 has-text-weight-normal">
-                Your goal is <i>to fit a function to best model the growth of Coronavirus in 2020</i>, from January 1 to March 26.
+                Your goal is <i>to fit a function to best model the growth of number of transistors on a microchip</i>, from 1971 to 2018.
               </h2>
               <h2 class="title is-4 has-text-weight-normal">
                 The smaller your mean squared error, the better your trend line!
