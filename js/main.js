@@ -13,7 +13,6 @@ for (let i = 0; i < xCoords.length; i++) {
 }
 
 let errorGraphOne = {
-    title: "An Example!",
     target: '#error-graph-one',
     width: 500,
     disableZoom: true,
@@ -240,7 +239,7 @@ functionPlot(notesGraphOne);
 functionPlot(notesGraphTwo);
 
 
-// Calculate mean-squared error; pass in 2D arrays for parameters.
+// General function to calculate mean-squared error; pass in 2D arrays for parameters.
 // MSE = 1.5 for y = x+2; MSE = 1.125 for y = 3x/2
 
 function meanSquaredError( pointsOne, pointsTwo ) {
@@ -254,55 +253,6 @@ function meanSquaredError( pointsOne, pointsTwo ) {
   return sum / pointsOne.length;
 }
 
-
-// Generate MSE table for demo.
-let table=document.getElementById("msetable");
-
-// Generate left-most column.
-let col = document.createElement("tr");
-
-let cellX = document.createElement("th");
-let cellOurY = document.createElement("th");
-let cellPrdY = document.createElement("th");
-
-let dataX = document.createTextNode("x-Coordinate");
-let dataOurY = document.createTextNode("y-Coordinate (expected/black)");
-let dataPrdY = document.createTextNode("y-Coordinate (our/blue)");
-
-cellX.appendChild(dataX);
-cellOurY.appendChild(dataOurY);
-cellPrdY.appendChild(dataPrdY);
-col.appendChild(cellX);
-col.appendChild(cellOurY);
-col.appendChild(cellPrdY);
-table.appendChild(col);
-
-// Generate data columns.
-for (let i = 0; i < xCoords.length; i++) {
-  col = document.createElement("tr");
-
-  cellX = document.createElement("td");
-  cellOurY = document.createElement("td");
-  cellPrdY = document.createElement("td");
-
-  if (i % 2 == 1) {
-    cellX.style.backgroundColor = "rgb(233, 247, 218)";
-    cellOurY.style.backgroundColor = "rgb(233, 247, 218)";
-    cellPrdY.style.backgroundColor = "rgb(233, 247, 218)";
-  }
-
-  dataX = document.createTextNode(xCoords[i]);
-  dataOurY = document.createTextNode(idealPointsTwo[i][1]);
-  dataPrdY = document.createTextNode(yCoords[i]);
-
-  cellX.appendChild(dataX);
-  cellOurY.appendChild(dataOurY);
-  cellPrdY.appendChild(dataPrdY);
-  col.appendChild(cellX);
-  col.appendChild(cellOurY);
-  col.appendChild(cellPrdY);
-  table.appendChild(col);
-}
 
 
 // Check submitted answers in "Now you try calculating" section.
@@ -381,102 +331,63 @@ function checkMSE() {
   answerNotif.appendChild(dismissBtn);
 }
 
-// Calculation steps.
-// Navigate back and forth between steps using prev and next buttons or with the dots.
-let stepIndex = 0;
-let numSteps = 5;
-
-setStep(0);
-
-function setStep (n) {
-    stepIndex += n;
-    if (stepIndex === 0) {
-        document.getElementById("prev").style.display = "none";
-        document.getElementById("next").style.display = "block";
-    }
-    else if (stepIndex === numSteps - 1) {
-        document.getElementById("prev").style.display = "block";
-        document.getElementById("next").style.display = "none";
-    }
-    else {
-        document.getElementById("prev").style.display = "block";
-        document.getElementById("next").style.display = "block";
-    }
-    showStep(stepIndex);
-}
-
-function jumpStep (n) {
-    stepIndex = 0;
-    setStep(n);
-}
-
-function showStep (n) {
-    let dots = document.getElementsByClassName("dot");
-    let steps = document.getElementsByClassName("step-content");
-    for (let i = 0; i < numSteps; i++) {
-        if (i !== n) {
-            steps[i].style.display = "none";
-            dots[i].className = "title is-5 dot";
-        }
-        else {
-            steps[i].style.display = "block";
-            dots[i].className = "title is-5 dot dot-active";
-        }
-    }
-}
-
 
 // Last section (real-world example).
 
-var coronaCases = [];
+var data_points = [];
 var CoronaGraph = {};
-d3.csv("corona_cases.csv", function(data) {
-    for (var i = 0; i < data.length / 2; i++) {
-        coronaCases.push([2 * i, data[2 * i].World]);
+d3.csv("moores_law.csv", function(data) {
+    for (var i = 0; i < data.length; i++) {
+        data_points.push([i, +data[i].transistors]);
     }
 
-    coronaGraph = {
-        target: '#corona-graph',
-        width: 500,
+    data_graph = {
+        target: '#data-graph',
+        width: 475,
         disableZoom: true,
         xAxis: {
-            label: 'Days Since 1/1',
-            domain: [0, 90]
+            label: 'Years Since 1971',
+            domain: [0, 45]
         },
         yAxis: {
-            label: 'Total Cases',
-            domain: [0, 500000]
+            label: 'Transistors Per Square Millimeter',
+            domain: [0, 100000000]
         },
         annotations:[
+            {x: 5},
             {x: 10},
+            {x: 15},
             {x: 20},
+            {x: 25},
             {x: 30},
+            {x: 35},
             {x: 40},
-            {x: 50},
-            {x: 60},
-            {x: 70},
-            {x: 80},
-            {y: 100000},
-            {y: 200000},
-            {y: 300000},
-            {y: 400000}
+            {y: 10000000},
+            {y: 20000000},
+            {y: 30000000},
+            {y: 40000000},
+            {y: 50000000},
+            {y: 60000000},
+            {y: 70000000},
+            {y: 80000000},
+            {y: 90000000}
         ],
         data: [
             {
-                points: coronaCases,
+                points: data_points,
                 fnType: 'points',
                 graphType: 'scatter',
                 color: 'red',
                 attr: { "stroke-width": 3 }
             },
             {
-                fn: '30x^2', color: 'green',
+                fn: '300x^4', color: 'green',
                 attr: { "stroke-width": 2 }
             }
         ]
     }
 
-    functionPlot(coronaGraph);
+    functionPlot(data_graph);
 });
 
 
@@ -487,13 +398,13 @@ let fnNotif = document.getElementById("check-function");
 
 function plotInputFn() {
     let inputFn = document.getElementById("function-input").value;
-    coronaGraph.data[1].fn = inputFn;
-    functionPlot(coronaGraph);
+    data_graph.data[1].fn = inputFn;
+    functionPlot(data_graph);
 
     // Calculate MSE.
     let compiledFn = math.compile(inputFn);
     let fnPoints = evaluateFn(compiledFn);
-    let msgTxt = "Your MSE is " + String(meanSquaredError(coronaCases, fnPoints)) + ".";
+    let msgTxt = "Your MSE is " + String(meanSquaredError(data_points, fnPoints)) + ".";
 
     fnNotif.style.display = "block";
     fnNotif.textContent = msgTxt;
@@ -513,20 +424,260 @@ function plotInputFn() {
 
 function evaluateFn(fn) {
     let points = [];
-    for (var i = 0; i < coronaCases.length; i++) {
-        let x = {x: coronaCases[i][0]};
+    for (var i = 0; i < data_points.length; i++) {
+        let x = {x: data_points[i][0]};
         points.push([x.x, fn.evaluate(x)]);
     }
     return points;
 }
 
 
+// CALCULATION ANIMATION.
+// Navigate back and forth between steps using prev and next buttons or with the dots.
+var stepIndex = 0;
+var numSteps = 7;
+
+function setStep (n, rev) {
+    stepIndex += n;
+    if (stepIndex < 0) { stepIndex = 0 }
+    if (stepIndex >= numSteps) { stepIndex = numSteps - 1 }
+
+    if (stepIndex === 0) {
+        document.getElementById("prev").style.display = "none";
+        document.getElementById("next").style.display = "block";
+    }
+    else if (stepIndex === numSteps - 1) {
+        document.getElementById("prev").style.display = "block";
+        document.getElementById("next").style.display = "none";
+    }
+    else {
+        document.getElementById("prev").style.display = "block";
+        document.getElementById("next").style.display = "block";
+    }
+    animate(stepIndex, rev);
+}
+
+var stepText = document.getElementById("step-text");
+
+function animate (n, rev) {
+    switch (n) {
+        case 0:
+            stepText.textContent = "Take the first blue point.";
+            if (rev) {
+                anime_one.direction = 'reverse';
+                anime_one.restart();
+                anime_two.direction = 'normal';
+                anime_two.restart();
+            }
+            break;
+        case 1:
+            stepText.textContent = "Since we are dealing with vertical distance, we can take just the y-value.";
+            if (rev) {
+                anime_thr.direction = 'normal';
+                anime_thr.restart();
+            }
+            else {
+                anime_one.direction = 'normal';
+                anime_one.restart();
+                anime_two.direction = 'reverse';
+                anime_two.restart();
+            }
+            break;
+        case 2:
+            stepText.textContent = "Likewise, we can take the y-value of the first black point.";
+            if (rev) {
+                stepText.style.opacity = 1;
+                anime_four.direction = 'normal';
+                anime_four.restart();
+                anime_up.direction = 'reverse';
+                anime_up.restart();
+            }
+            else {
+                anime_thr.direction = 'reverse';
+                anime_thr.restart();
+            }
+            break;
+        case 3:
+            stepText.style.opacity = 0;
+            if (rev) {
+                anime_away.direction = 'reverse';
+                anime_away.restart();
+                anime_five.direction = 'reverse';
+                anime_five.restart();
+            }
+            else {
+                anime_four.direction = 'reverse';
+                anime_four.restart();
+                anime_up.direction = 'normal';
+                anime_up.restart();
+            }
+            break;
+        case 4:
+            if (rev) {
+                anime_six.direction = 'reverse';
+                anime_six.restart();
+                anime_up_two.direction = 'reverse';
+                anime_up_two.restart();
+                anime_away_two.direction = 'reverse';
+                anime_away_two.restart();
+            }
+            else {
+                anime_five.direction = 'normal';
+                anime_five.restart();
+                anime_away.direction = 'normal';
+                anime_away.restart();
+            }
+            break;
+        case 5:
+            if (rev) {
+                anime_sev.direction = 'reverse';
+                anime_sev.restart();
+                anime_away_thr.direction = 'reverse';
+                anime_away_thr.restart();
+                anime_away_four.direction = 'reverse';
+            anime_away_four.restart();
+            }
+            else {
+                anime_six.direction = 'normal';
+                anime_six.restart();
+                anime_up_two.direction = 'normal';
+                anime_up_two.restart();
+                anime_away_two.direction = 'normal';
+                anime_away_two.restart();
+            }
+            break;
+        case 6:
+            anime_sev.direction = 'normal';
+            anime_sev.restart();
+            anime_away_thr.direction = 'normal';
+            anime_away_thr.restart();
+            anime_away_four.direction = 'normal';
+            anime_away_four.restart();
+            break;
+    }
+}
+
+setStep(0, false);
+
+
 // ANIMATIONS.
 
-// anime({
-//     targets: 'title',
-//     translateX: 250,
-//     rotate: '1turn',
-//     backgroundColor: '#FFF',
-//     duration: 8000
-//   });
+var anime_away = anime ({
+    autoplay: false,
+    targets: '.go-up',
+    opacity: [1,0],
+    duration: 1000,
+    easing: 'easeInOutSine'
+});
+
+var anime_away_two = anime ({
+    autoplay: false,
+    targets: '.fade',
+    opacity: [1,0],
+    duration: 1000,
+    easing: 'easeInOutSine'
+});
+
+var anime_away_thr = anime ({
+    autoplay: false,
+    targets: '.anime-6',
+    opacity: [1,0],
+    duration: 1000,
+    easing: 'easeInOutSine'
+});
+
+var anime_away_four = anime ({
+    autoplay: false,
+    targets: '.stay',
+    opacity: [1,0],
+    duration: 1000,
+    easing: 'easeInOutSine',
+    delay: anime.stagger(200)
+});
+
+var anime_one = anime ({
+    autoplay: false,
+    targets: '.anime-1',
+    opacity: [1,0],
+    translateX: 80,
+    duration: 1000,
+    easing: 'linear'
+});
+
+var anime_two = anime ({
+    autoplay: false,
+    targets: '.anime-2',
+    opacity: [1,0],
+    translateX: -80,
+    duration: 1000,
+    easing: 'linear',
+    direction: 'reverse'
+});
+
+var anime_thr = anime ({
+    autoplay: false,
+    targets: '.anime-3',
+    opacity: [1,0],
+    translateX: -80,
+    duration: 1000,
+    easing: 'linear',
+    direction: 'reverse'
+});
+
+var anime_four = anime ({
+    autoplay: false,
+    targets: '.anime-4',
+    opacity: [1,0],
+    duration: 1000,
+    easing: 'easeInOutSine',
+    direction: 'reverse'
+});
+
+var anime_up = anime ({
+    autoplay: false,
+    targets: '.go-up',
+    translateY: -100,
+    translateX: [0,0],
+    duration: 1000,
+    easing: 'easeInOutSine',
+    delay: anime.stagger(200)
+});
+
+var anime_five = anime ({
+    autoplay: false,
+    targets: '.anime-5',
+    translateY: [-170,-285],
+    opacity: [0,1],
+    duration: 1000,
+    easing: 'easeInOutSine',
+    delay: anime.stagger(200)
+});
+
+var anime_up_two = anime ({
+    autoplay: false,
+    targets: '.stay',
+    translateY: [-285,-405],
+    duration: 1000,
+    easing: 'easeInOutSine',
+    delay: anime.stagger(200)
+});
+
+var anime_six = anime ({
+    autoplay: false,
+    targets: '.anime-6',
+    translateY: [-290,-415],
+    opacity: [0,1],
+    duration: 1000,
+    easing: 'easeInOutSine',
+    delay: anime.stagger(200)
+});
+
+var anime_sev = anime ({
+    autoplay: false,
+    targets: '.anime-7',
+    translateY: [-520,-625],
+    opacity: [0,1],
+    duration: 1000,
+    easing: 'easeInOutSine',
+    delay: anime.stagger(200)
+});
