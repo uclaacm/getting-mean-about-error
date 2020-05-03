@@ -27,23 +27,18 @@ body {
 }
 
 .notification {
-	background-color: rgb(145, 221, 57);
+	background-color: #9CD931;
 	color: white;
 	transition: 0.3s;
-	padding: 0.5rem 2.5rem 0.5rem 1.5rem;
+	padding: 0.5rem 1.5rem 0.5rem 1.5rem;
 }
 
 .notification:hover {
-	background-color: rgb(127, 209, 32);
+	background-color: rgb(121, 194, 26);
 	transition: 0.3s;
 }
 
-.check-submit{
-	float:left;
-	margin-bottom: 15px;
-}
-
-.check-response{
+.check-response {
 	float:right;
 }
 

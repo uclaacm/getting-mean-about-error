@@ -257,31 +257,41 @@ function meanSquaredError( pointsOne, pointsTwo ) {
 
 // Check submitted answers in "Now you try calculating" section.
 
-let submissions = document.getElementsByClassName("check-submit");
-let notifTxt = document.getElementsByClassName("check-response");
+var is_correct = [0, 0, 0, 0, 0, 0];
+let point_btns = document.getElementsByClassName("point-submit");
+let point_notif = document.getElementsByClassName("point-response");
 
-submissions[0].addEventListener("click", function() {checkAns(0);});
-submissions[1].addEventListener("click", function() {checkAns(1);});
-submissions[2].addEventListener("click", function() {checkAns(2);});
-submissions[3].addEventListener("click", function() {checkAns(3);});
-submissions[4].addEventListener("click", function() {checkAns(4);});
-submissions[5].addEventListener("click", function() {checkAns(5);});
+for (let i = 0; i < point_btns.length; i++) {
+    point_btns[i].addEventListener("click", function() {pointAns(i);});
+}
 
-function checkAns(i) {
-  notifTxt[i].style.display = "block";
-  notifTxt[i].align = "right";
+function pointAns(i) {
+  point_notif[i].style.display = "block";
+  point_notif[i].style.width = "10rem";
+  // point_notif[i].align = "right";
 
   let msgTxt1;
-  let answers = document.getElementsByClassName("check-input");
-  let ansInput = answers[i].value;
+  let ansInput = document.getElementsByClassName("point-input")[i].value;
 
   if (ansInput === String((idealPointsOne[i][1]-yCoords[i])**2)) {
-      msgTxt1 = "Correct!";
+    is_correct[i] = 1;
+    let is_done = 1;
+    for (let j = 0; j < is_correct.length; j++) {
+        if (is_correct[j] === 0) {
+            is_done = 0;
+        }
+    }
+    if (is_done) {
+        document.getElementById("done-msg").className = "message is-dark";
+    }
+    msgTxt1 = "Great!";
   }
   else {
-      msgTxt1 = "Incorrect!";
+    is_correct[i] = 0;
+    document.getElementById("done-msg").className = "message is-dark is-hidden";
+    msgTxt1 = "Not quite.";
   }
-  notifTxt[i].textContent = msgTxt1;
+  point_notif[i].textContent = msgTxt1;
 
   var dismissBtn1 = document.createElement("button");
   dismissBtn1.className = "delete";
@@ -290,15 +300,15 @@ function checkAns(i) {
   dismissBtn1.addEventListener("click", handleDismiss);
 
   function handleDismiss() {
-    notifTxt[i].style.display = "none";
+    point_notif[i].style.display = "none";
   }
 
-  notifTxt[i].appendChild(dismissBtn1);
+  point_notif[i].appendChild(dismissBtn1);
 }
 
 
 
-// Handle submit button in the "Now you try calculating" section.
+// Check final MSE in the "Now you try calculating" section.
 document.getElementById("mse-submit").addEventListener("click", checkMSE);
 
 let answerNotif = document.getElementById("check-answer");
@@ -310,10 +320,10 @@ function checkMSE() {
   let mseInput = document.getElementById("mse-input").value;
 
   if (mseInput === String(meanSquaredError(genErrorPoints, idealPointsOne))) {
-    msgTxt = "Correct!";
+    msgTxt = "Correct! This is a larger error than our red line's, so the red line is the better line of fit.";
   }
   else {
-    msgTxt = "Incorrect!";
+    msgTxt = "Try again!";
   }
   answerNotif.textContent = msgTxt;
   // setTimeout(function() {document.getElementById("check-answer").style.display = "none"}, 1000);
@@ -335,7 +345,6 @@ function checkMSE() {
 // Last section (real-world example).
 
 var data_points = [];
-var CoronaGraph = {};
 d3.csv("moores_law.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
         data_points.push([i, +data[i].transistors]);
