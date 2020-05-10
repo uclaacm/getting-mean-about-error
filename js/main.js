@@ -347,7 +347,7 @@ function checkMSE() {
 var data_points = [];
 d3.csv("moores_law.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
-        data_points.push([i, +data[i].transistors]);
+        data_points.push([i, (+data[i].transistors) / 1000000]);
     }
 
     data_graph = {
@@ -359,8 +359,8 @@ d3.csv("moores_law.csv", function(data) {
             domain: [0, 45]
         },
         yAxis: {
-            label: 'Transistors Per Square Millimeter',
-            domain: [0, 100000000]
+            label: 'Millions of Transistors Per Square Millimeter',
+            domain: [0, 100]
         },
         annotations:[
             {x: 5},
@@ -371,15 +371,15 @@ d3.csv("moores_law.csv", function(data) {
             {x: 30},
             {x: 35},
             {x: 40},
-            {y: 10000000},
-            {y: 20000000},
-            {y: 30000000},
-            {y: 40000000},
-            {y: 50000000},
-            {y: 60000000},
-            {y: 70000000},
-            {y: 80000000},
-            {y: 90000000}
+            {y: 10},
+            {y: 20},
+            {y: 30},
+            {y: 40},
+            {y: 50},
+            {y: 60},
+            {y: 70},
+            {y: 80},
+            {y: 90}
         ],
         data: [
             {
@@ -390,7 +390,7 @@ d3.csv("moores_law.csv", function(data) {
                 attr: { "stroke-width": 3 }
             },
             {
-                fn: '300x^4', color: 'green',
+                fn: '(1/20000)x^4', color: 'green',
                 attr: { "stroke-width": 2 }
             }
         ]

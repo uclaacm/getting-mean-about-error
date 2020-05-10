@@ -242,39 +242,6 @@
             <p class="is-size-3 has-text-centered anime-7">
               \[ = 1.125\]
             </p>
-            <!-- VECTOR NOTATION
-            <p class="is-size-4 has-text-centered anime-3 go-up" style="opacity: none">
-              \[\hat y\ = \: < 1.5,\: 3, \:4.5, \:6, \:7.5, \:9 > \]
-            </p>
-            <p class="is-size-5 has-text-centered anime-4 go-up" style="opacity: none">
-              We now have two vectors, containing the y-values of both data sets.
-            </p>
-            <p class="is-size-5 has-text-centered anime-5 fade" style="opacity: none">
-              To find their vertical distances, we take the difference between \(\hat y\) and \(y\):
-            </p>
-            <p class="is-size-4 has-text-centered anime-5 fade" style="opacity: none">
-              \[ y - \hat y \]
-              \[ = \: < 2-1.5, \:3-3, \:6-4.5, \:4-6, \:8-7.5, \:9-9 > \]
-            </p>
-            <p class="is-size-4 has-text-centered anime-5 stay" style="opacity: none">
-              \[ = \: < 0.5, \:0, \:1.5, -2, \:0.5, \:0 > \]
-            </p>
-            <p class="is-size-4 has-text-centered anime-6" style="opacity: none">
-              To get the sum of the squared errors, we take the dot product of the difference vector with itself
-              (we're almost there!):
-            </p>
-            <p class="is-size-5">
-              \[(\hat y - y) \cdot (\hat y - y) \]
-              \[= (-0.5)^2 + 0^2  + (-1.5)^2 + 2^2 + (-0.5)^2 + 0^2 \]
-              \[= 6.75\]
-            </p>
-            <p class="is-size-5">
-              Finally, we want to take the mean of the squared errors (to calculate MEAN SQUARED ERROR.. YOU GET IT?)
-              Therefore, we divide the sum of the squared errors by the number of data points -- in our case, 6.
-            </p>
-            <p class="is-size-5">
-            \[MSE = 6.75 \div 6 = 1.125\]
-            </p>-->
             <button class="button is-dark" id="prev" onclick="setStep(-1, true)">Back</h2>
             <button class="button is-dark" id="next" onclick="setStep(1, false)">Next</h2>
           </div>
@@ -438,9 +405,9 @@
                   <br>
                   <label class="label">Your function:</label>
                   <div class="field">
-                    <input class="input is-success" type="text" id="function-input" value="300x^4"/>
+                    <input class="input is-success" type="text" id="function-input" value="(1/20000)x^4"/>
                   </div>
-                  <button class="button is-dark" id="function-submit">Submit</button>
+                  <button class="button is-dark" id="function-submit">Find MSE</button>
                   <div class="content is-inline">
                     <div class="notification is-pulled-right" id="check-function" style="width: 25rem; display: none">
                     </div>
@@ -479,20 +446,57 @@
                   </p>
                 </li>
               </ol>
+              <div class="dropdown is-pulled-right is-right is-hoverable is-up">
+                <div class="dropdown-trigger">
+                  <div class="notification" style="cursor: pointer">
+                    Sidenote
+                  </div>
+                </div>
+                <div class="dropdown-menu" role="menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">
+                      <p>
+                        It isn't <i>always</i> good to have a small MSE. If it is too close to 0, we might
+                        see <b>overfitting</b>. This means our function is too "tailored" for our specific
+                        data points but might be way off if we tried a new set of similar data points.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <p class="is-size-5">
                 Keep in mind, there are various metrics to measure error, and MSE is just one of them.
               </p>
             </div>
           </div>
-          <div class="column">
-            <h2 class="title is-3">
-              You might be wondering, how can I tell if my MSE is "good" or "bad"?
-            </h2>
-            <p class="is-size-5">
-              The answer is not immediately apparent but might become clearer when you
-              learn how MSE is used in a machine learning context, something a little
-              beyond the scope of this lesson.
-            </p>
+        </div>
+      </div>
+    </section>
+    <section class="hero">
+      <div class="hero-body has-background-teachla-green">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="box">
+                <div class="content">
+                  <h2 class="title is-3">
+                    How can I tell if my MSE is "good" or "bad"?
+                  </h2>
+                  <p class="is-size-5">
+                    Unfortunately, there is no definite answer, as it depends heavily on the
+                    context of the problem. Generally, the larger our range of data, the more
+                    "OK" it is to have a large MSE.
+                  </p>
+                  <p class="is-size-5">
+                    The <b>Moore's Law</b> example above demonstrates that a function that is pretty
+                    close to the data points might still produce a big MSE, simply because we
+                    are working with fairly large numbers. There is no universal rule for what
+                    counts as a "good" MSE, but we can reasonably say that an MSE of 100 would be much more
+                    meaningful here than if we were looking at a data set with a range of 10.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -500,7 +504,7 @@
     <footer class="footer has-text-centered is-dark">
       <div class="content">
         <p class="is-size-6">
-          This website is brought to you by ACM Teach Zoom.
+          This website was created by the <b>ACM Teach LA Dev Team</b> &#128526;
         </p>
       </div>
     </footer>
