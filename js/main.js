@@ -268,7 +268,6 @@ for (let i = 0; i < point_btns.length; i++) {
 function pointAns(i) {
   point_notif[i].style.display = "block";
   point_notif[i].style.width = "10rem";
-  // point_notif[i].align = "right";
 
   let msgTxt1;
   let ansInput = document.getElementsByClassName("point-input")[i].value;

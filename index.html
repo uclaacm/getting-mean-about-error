@@ -84,7 +84,7 @@
               </p>
               <p class="is-size-5">
                 We want to figure out the relationship between our points. So, we've made two predictions: the <i style="color: red">red</i>
-                line and the <i style="color: green">green</i> line. But, how can we know which one is better?
+                line and the <i style="color: green">green</i> line. But, how do we know which one is better?
               </p>
               <p class="is-size-5">
                 We can look at the <span class="has-text-weight-bold">error.</span> In statistics, <span class="has-text-weight-bold">error</span>
@@ -112,7 +112,7 @@
                 <h2 class="title is-3">
                   Introducing <u>Mean Squared Error</u>.
                 </h2>
-                <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> is one way we can calculate the error of a prediction. It's not too tricky; here's how it works:</p>
+                <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> is one way we can calculate the error of a predictive model. It's not too tricky; here's how it works:</p>
                 <ol class="is-size-5">
                   <li>Start with an error of 0.</li>
                   <li>For each point, take the difference between the collected data and our prediction; square it.</li>
@@ -121,12 +121,18 @@
                 </ol>
                 <p class="is-size-5">That wasn't too bad, wasn't it? Sometimes (like in textbooks), you'll see it in more complicated math notation:</p>
                 <div>
-                  \[ MSE = \frac{1}{n} \sum\limits_{i=1}^n (y-\hat y)^2 \]
+                  \[ MSE = \frac{1}{m} \sum\limits_{i=1}^m (y-\hat y)^2 \]
                 </div>
                 <p class="is-size-5">But don't be scared! Now, you know what it means!</p>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="columns">
           <div class="column">
             <div class="box">
               <div class="content">
@@ -135,11 +141,11 @@
                 </h2>
                 <ol class="is-size-6">
                   <li>
-                    MSE is <b> always positive</b>. So, whether your prediction is higher or lower than your data point will have no bearing on your error!
+                    MSE is <b> always nonnegative</b>. So, whether your prediction is greater than or less than your data point will have no bearing on your error!
                     <div>
                       \[ (5-3)^2=(3-5)^2=4 \]
                     </div>
-                    So basically, the following two graphs will have the <b>same</b> MSE because every point is equally far from the prediction line. <br>
+                    Therefore, the following two graphs will have the <b>same</b> MSE because every point is vertically equidistant from the prediction line. <br>
                     <div id="notes-graph-one" class="notes-graph">
                     </div>
                     <div id="notes-graph-two" class="notes-graph">
@@ -160,41 +166,45 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section has-background-teachla-green">
       <div class="container">
         <div class="columns">
           <div class="column">
-            <div class="content">
-              <h2 class="title is-4">
-                To compare the MSE in the example, let's look at each line separately, starting with the red line.
-              </h2>
-              <p class="is-size-5">
-                The equation of the line is:
-              </p>
-              <p class="is-size-5">
-                \[y = \frac{3}{2}x \]
-              </p>
-              <p class="is-size-5">
-                Notice the <b>two sets of data points</b> in Figure 1a.
-                The <i style="color:blue">blue</i> points are our <b>original data values</b>, and the <i>black</i> points are our <b>expected values</b> based on the line equation.
-              </p>
-              <p class="is-size-5">
-                With MSE, we will be dealing with the <b>vertical distances</b> between the two sets of data points.
-              </p>
+            <div class="box">
+              <div class="content">
+                <h2 class="title is-4">
+                  To compare the MSE's of the lines in Figure 1, let's look at each line separately, starting with the red line.
+                </h2>
+                <p class="is-size-5">
+                  The equation of the line is:
+                </p>
+                <p class="is-size-5">
+                  \[y = \frac{3}{2}x \]
+                </p>
+                <p class="is-size-5">
+                  Notice the <b>two sets of data points</b> in Figure 1a.
+                  The <i style="color:blue">blue</i> points are our <b>original data values</b>, and the <i>black</i> points are our <b>predicted values</b> based on the line equation.
+                </p>
+                <p class="is-size-5">
+                  With MSE, we will be dealing with the <b>vertical distances</b> between the two sets of data points.
+                </p>
+              </div>
             </div>
           </div>
           <div class="column">
-            <div id="error-graph-two" class="has-text-centered">
+            <div class="box">
+                <div id="error-graph-two" class="has-text-centered">
+                </div>
+                <h2 class="title is-5 has-text-centered">
+                  Figure 1a
+                </h2>
             </div>
-            <h2 class="title is-5 has-text-centered">
-              Figure 1a
-            </h2>
           </div>
         </div>
       </div>
     </section>
     <section class="hero">
-      <div class="hero-body has-background-teachla-green">
+      <div class="hero-body">
         <div class="container">
           <div class="box" id="calculations">
             <h2 class="title is-3">
@@ -248,13 +258,14 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section has-background-teachla-green">
       <div class="container">
         <div class="columns">
           <div class="column">
+            <div class="box">
               <div class="content">
-                <h2 class="title is-4">
-                  Now is your turn to calculate!
+                <h2 class="title is-3">
+                  Your turn!
                 </h2>
                 <p class="is-size-5">
                   Let's try applying the previous steps to the second line of fit,
@@ -262,7 +273,7 @@
                 <p class="is-size-4">
                   \[y = x + 2\]
                 </p>
-                <div id="error-graph-three">
+                <div id="error-graph-three" class="has-text-centered">
                 </div>
                 <h2 class="title is-5 has-text-centered">
                   Figure 1b
@@ -280,9 +291,11 @@
                   </div>
                 </div>
               </div>
+            </div>
           </div>
 
           <div class="column">
+            <div class="box">
             <div class="content">
               <p class="is-size-5">
                 Let's take <b>one point at a time</b>, from left to right in Figure 1b.
@@ -374,16 +387,17 @@
                         </div>
                       </div>
                     </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>     
+            </div>
           </div>
         </div>
       </div>
     </section>
     <section class="hero">
-      <div class="hero-body has-background-teachla-green">
+      <div class="hero-body">
         <div class="container">
           <div class="columns">
             <div class="column">
@@ -428,52 +442,36 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section has-background-teachla-green">
       <div class="container">
         <div class="columns">
           <div class="column">
-            <h2 class="title is-3">To recap...</h2>
-            <div class="content">
-              <ol class="is-size-5">
-                <li>
-                  <p class="is-size-5">
-                    MSE punishes positive and negative error <b>equally</b>, and <b>nonlinearly</b>.
-                  </p>
-                </li>
-                <li>
-                  <p class="is-size-5">
-                    It is always a <b>positive</b> value, and the smaller the MSE, the better our regression line.
-                  </p>
-                </li>
-              </ol>
-              <div class="dropdown is-pulled-right is-right is-hoverable is-up">
-                <div class="dropdown-trigger">
-                  <div class="notification" style="cursor: pointer">
-                    Sidenote
-                  </div>
-                </div>
-                <div class="dropdown-menu" role="menu">
-                  <div class="dropdown-content">
-                    <div class="dropdown-item">
-                      <p>
-                        It isn't <i>always</i> good to have a small MSE. If it is too close to 0, we might
-                        see <b>overfitting</b>. This means our function is too "tailored" for our specific
-                        data points but might be way off if we tried a new set of similar data points.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            <div class="box">
+              <h2 class="title is-3">To recap...</h2>
+              <div class="content">
+                <ol class="is-size-5">
+                  <li>
+                    <p class="is-size-5">
+                      MSE punishes positive and negative error <b>equally</b>, and <b>nonlinearly</b>.
+                    </p>
+                  </li>
+                  <li>
+                    <p class="is-size-5">
+                      It is always a <b>nonnegative</b> value, and the smaller the MSE, the better our regression line.
+                    </p>
+                  </li>
+                </ol>
+                <p class="is-size-5">
+                  Keep in mind, there are various metrics to measure error, and MSE is just one of them.
+                </p>
               </div>
-              <p class="is-size-5">
-                Keep in mind, there are various metrics to measure error, and MSE is just one of them.
-              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
     <section class="hero">
-      <div class="hero-body has-background-teachla-green">
+      <div class="hero-body">
         <div class="container">
           <div class="columns">
             <div class="column">
@@ -484,15 +482,20 @@
                   </h2>
                   <p class="is-size-5">
                     Unfortunately, there is no definite answer, as it depends heavily on the
-                    context of the problem. Generally, the larger our range of data, the more
+                    context of the problem.
+                  </p>
+                  <p class="is-size-5">
+                    It isn't <i>always</i> good to have a small MSE. If it is too close to 0, we might
+                    see <b>overfitting</b>. This means our function is too "tailored" for our specific
+                    data points and might be way off if we tried a new set of similar data points. Generally, the larger our range of data and the more diverse our data is, the more
                     "OK" it is to have a large MSE.
                   </p>
                   <p class="is-size-5">
                     The <b>Moore's Law</b> example above demonstrates that a function that is pretty
                     close to the data points might still produce a big MSE, simply because we
                     are working with fairly large numbers. There is no universal rule for what
-                    counts as a "good" MSE, but we can reasonably say that an MSE of 100 would be much more
-                    meaningful here than if we were looking at a data set with a range of 10.
+                    counts as a "good" MSE, but we can probably say that an MSE of 100 would be much more
+                    reasonable here than if we were looking at a data set with a range of 10.
                   </p>
                 </div>
               </div>
