@@ -259,17 +259,18 @@ function meanSquaredError( pointsOne, pointsTwo ) {
 
 var is_correct = [0, 0, 0, 0, 0, 0];
 let point_btns = document.getElementsByClassName("point-submit");
-let point_notif = document.getElementsByClassName("point-response");
+let pointNotif = document.getElementsByClassName("point-response");
 
 for (let i = 0; i < point_btns.length; i++) {
     point_btns[i].addEventListener("click", function() {pointAns(i);});
 }
 
 function pointAns(i) {
-  point_notif[i].style.display = "block";
-  point_notif[i].style.width = "10rem";
+  pointNotif[i].style.display = "block";
+  pointNotif[i].style.width = "10rem";
 
-  let msgTxt1;
+  let msgTxt;
+  let colorClass;
   let ansInput = document.getElementsByClassName("point-input")[i].value;
 
   if (ansInput === String((idealPointsOne[i][1]-yCoords[i])**2)) {
@@ -283,26 +284,29 @@ function pointAns(i) {
     if (is_done) {
         document.getElementById("done-msg").className = "message is-dark";
     }
-    msgTxt1 = "Great!";
+    msgTxt = "Great!";
+    colorClass = " has-background-teachla-green-dark";
   }
   else {
     is_correct[i] = 0;
     document.getElementById("done-msg").className = "message is-dark is-hidden";
-    msgTxt1 = "Not quite.";
+    msgTxt = "Not quite.";
+    colorClass = " has-background-grey-light";
   }
-  point_notif[i].textContent = msgTxt1;
+  pointNotif[i].textContent = msgTxt;
+  pointNotif[i].className = "notification point-response" + colorClass;
 
-  var dismissBtn1 = document.createElement("button");
-  dismissBtn1.className = "delete";
+  let dismissBtn = document.createElement("button");
+  dismissBtn.className = "delete";
 
   // Handle answer-notification click.
-  dismissBtn1.addEventListener("click", handleDismiss);
+  dismissBtn.addEventListener("click", handleDismiss);
 
   function handleDismiss() {
-    point_notif[i].style.display = "none";
+    pointNotif[i].style.display = "none";
   }
 
-  point_notif[i].appendChild(dismissBtn1);
+  pointNotif[i].appendChild(dismissBtn);
 }
 
 
@@ -316,18 +320,21 @@ function checkMSE() {
   // MSE for demo is 1.5
   answerNotif.style.display = "block";
   let msgTxt;
+  let colorClass;
   let mseInput = document.getElementById("mse-input").value;
 
   if (mseInput === String(meanSquaredError(genErrorPoints, idealPointsOne))) {
     msgTxt = "Correct! This is a larger error than our red line's, so the red line is the better line of fit.";
+    colorClass = " has-background-teachla-green-dark";
   }
   else {
     msgTxt = "Try again!";
+    colorClass = " has-background-grey-light";
   }
   answerNotif.textContent = msgTxt;
-  // setTimeout(function() {document.getElementById("check-answer").style.display = "none"}, 1000);
+  answerNotif.className = "notification is-pulled-right" + colorClass;
 
-  var dismissBtn = document.createElement("button");
+  let dismissBtn = document.createElement("button");
   dismissBtn.className = "delete";
 
   // Handle answer-notification click.

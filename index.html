@@ -17,20 +17,37 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
-  <body id="top">
-    <nav class="navbar is-fixed-top is-spaced has-border-bottom-green" role="navigation" aria-label="main navigation">
+  <header>
+    <nav class="navbar is-fixed-top has-border-bottom-green" role="navigation" aria-label="main navigation">
       <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="#top">
-            <span class="title is-5">Getting Mean About Error</span>
-          </a>
+        <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-item" href="#top">
+              <span class="title is-5">Getting Mean About Error</span>
+            </a>
+        
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="#def">
+                <span class="title is-6">Definition</span>
+              </a>
+              <a class="navbar-item" href="#wt">
+                <span class="title is-6">Walkthrough</span>
+              </a>
+              <a class="navbar-item" href="#rwe">
+                <span class="title is-6">Real-World Example</span>
+              </a>
+              <a class="navbar-item" href="#sum">
+                <span class="title is-6">Summary</span>
+              </a>
+            </div>
+          </div>
 
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
-        </div>
+        </nav>
 
         <div id="navbar-menu" class="navbar-menu">
           <div class="navbar-end">
@@ -47,25 +64,25 @@
         </div>
       </div>
     </nav>
-    <section class="hero">
-      <div class="hero-body has-background-teachla-green">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <div class="box">
-                <div class="content">
-                  <h1 class="title is-2">Let's get <u>mean</u> about error.</h1>
-                  <div class="title is-4">Mean Squared Error, that is.</div>
-                  <p>Questions we'll answer in this microlesson:</p>
-                  <ol class="has-text-weight-bold is-size-5">
-                    <li>What is Mean Squared Error?</li>
-                    <li>How do you calculate Mean Squared Error?</li>
-                    <li>When and why do we use Mean Squared Error?</li>
-                  </ol>
-                  <p>And, we'll have an opportunity to apply it to a real-life example: <span class="has-text-weight-bold">Moore's Law</span>.</p>
-                  <div class="buttons">
-                    <a class="button is-dark" href="https://docs.google.com/presentation/d/16b5fIM80mlOgvMK4_ly5ESvD9a01t1rolWXHVtvi0YQ/">Accompanying Lesson: Linear Regression</a>
-                  </div>
+  </header>
+  <body id="top">
+    <section class="section has-background-teachla-green">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <div class="content">
+                <h1 class="title is-2">Let's get <u>mean</u> about error.</h1>
+                <div class="title is-4">Mean Squared Error, that is.</div>
+                <p>Questions we'll answer in this microlesson:</p>
+                <ol class="has-text-weight-bold is-size-5">
+                  <li>What is Mean Squared Error?</li>
+                  <li>How do you calculate Mean Squared Error?</li>
+                  <li>When and why do we use Mean Squared Error?</li>
+                </ol>
+                <p>And, we'll have an opportunity to apply it to a real-life example: <span class="has-text-weight-bold">Moore's Law</span>.</p>
+                <div class="buttons">
+                  <a class="button is-dark" href="https://docs.google.com/presentation/d/16b5fIM80mlOgvMK4_ly5ESvD9a01t1rolWXHVtvi0YQ/">Accompanying Lesson: Linear Regression</a>
                 </div>
               </div>
             </div>
@@ -73,37 +90,41 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section has-background-grey-light">
       <div class="container">
         <div class="columns">
           <div class="column">
-            <div class="content">
-              <h2 class="title is-3">First, why do we care about error?</h2>
-              <p class="is-size-5">
-                Let's say we just performed an experiment and collected some data (<b>Figure 1</b>).
-              </p>
-              <p class="is-size-5">
-                We want to figure out the relationship between our points. So, we've made two predictions: the <i style="color: red">red</i>
-                line and the <i style="color: green">green</i> line. But, how do we know which one is better?
-              </p>
-              <p class="is-size-5">
-                We can look at the <span class="has-text-weight-bold">error.</span> In statistics, <span class="has-text-weight-bold">error</span>
-                is a measure of how wrong a prediction is.<span class="has-text-weight-bold"> The better the prediction, the smaller the error</span>.
-                So, we should pick the prediction with the smaller error.
-              </p>
+            <div class="box">
+              <div class="content">
+                <h2 class="title is-3">First, why do we care about error?</h2>
+                <p class="is-size-5">
+                  Let's say we just performed an experiment and collected some data (<b>Figure 1</b>).
+                </p>
+                <p class="is-size-5">
+                  We want to figure out the relationship between our points. So, we've made two predictions: the <i style="color: red">red</i>
+                  line and the <i style="color: green">green</i> line. But, how do we know which one is better?
+                </p>
+                <p class="is-size-5">
+                  We can look at the <span class="has-text-weight-bold">error.</span> In statistics, <span class="has-text-weight-bold">error</span>
+                  is a measure of how wrong a prediction is.<span class="has-text-weight-bold"> The better the prediction, the smaller the error</span>.
+                  So, we should pick the prediction with the smaller error.
+                </p>
+              </div>
             </div>
           </div>
           <div class="column">
-            <div id="error-graph-one" class="has-text-centered">
+            <div class="box">
+              <div id="error-graph-one" class="has-text-centered">
+              </div>
+              <h2 class="title is-5 has-text-centered">
+                Figure 1
+              </h2>
             </div>
-            <h2 class="title is-5 has-text-centered">
-              Figure 1
-            </h2>
           </div>
         </div>
       </div>
     </section>
-    <section class="section has-background-teachla-green">
+    <section id="def" class="section has-background-teachla-green">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -112,7 +133,7 @@
                 <h2 class="title is-3">
                   Introducing <u>Mean Squared Error</u>.
                 </h2>
-                <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> is one way we can calculate the error of a predictive model. It's not too tricky; here's how it works:</p>
+                <p class="is-size-5"><span class="has-text-weight-bold">Mean Squared Error</span> (MSE) is one way we can calculate the error of a predictive model. It's not too tricky; here's how it works:</p>
                 <ol class="is-size-5">
                   <li>Start with an error of 0.</li>
                   <li>For each point, take the difference between the collected data and our prediction; square it.</li>
@@ -130,50 +151,73 @@
         </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section has-background-grey-light">
       <div class="container">
         <div class="columns">
           <div class="column">
             <div class="box">
               <div class="content">
-                <h2 class="title is-4">
-                  Some extra notes:
+                <h2 class="title is-3">
+                  Some things to note:
                 </h2>
-                <ol class="is-size-6">
-                  <li>
-                    MSE is <b> always nonnegative</b>. So, whether your prediction is greater than or less than your data point will have no bearing on your error!
-                    <div>
-                      \[ (5-3)^2=(3-5)^2=4 \]
+                <ul class="is-size-4">
+                  <div class="columns">
+                    <div class="column">
+                      <li>
+                        <p class="is-size-4">
+                          MSE is <b> always nonnegative</b>.
+                        </p>
+                        <p class="is-size-5">
+                          So, whether your prediction is greater than or less than your data point will have no bearing on your error!
+                        </p>
+                        <div class="is-size-5">
+                          \[ (5-3)^2=(3-5)^2=4 \]
+                        </div>
+                        <p class="is-size-5">
+                          The following two graphs will have the <b>same</b> MSE because every point is vertically equidistant from the prediction line. <br>
+                        </p>
+                        <div id="notes-graph-one" class="notes-graph">
+                        </div>
+                        <div id="notes-graph-two" class="notes-graph">
+                        </div>
+                      </li>
                     </div>
-                    Therefore, the following two graphs will have the <b>same</b> MSE because every point is vertically equidistant from the prediction line. <br>
-                    <div id="notes-graph-one" class="notes-graph">
+                    <div class="column">
+                      <li>
+                        <p class="is-size-4">
+                          Because we are <b>squaring</b> the differences, bigger differences are heavily (nonlinearly) punished!
+                        </p>
+                        <p class="is-size-5">
+                          <i>Example</i>:
+                        </p>
+                        <div>
+                          \[ (5-3)^2=4 \]
+                          \[ (6-3)^2=9 \]
+                        </div>
+                        <p class="is-size-5">
+                          In this example, even though 5 and 6 are just <b>1 unit apart</b>, their squared errors, when compared against 3, are <b>5 units apart</b>.
+                        </p>
+                        <p class="is-size-5">
+                          Therefore, outliers in our data can be pretty hurtful to our MSE.
+                        </p>
+                      </li>
                     </div>
-                    <div id="notes-graph-two" class="notes-graph">
-                    </div>
-                  </li>
-                  <li>
-                    Because we are <b>squaring</b> the differences, bigger differences are heavily (nonlinearly) punished!
-                    <div>
-                      \[ (5-3)^2=4 \]
-                      \[ (6-3)^2=9 \]
-                    </div>
-                    In this example, even though 5 and 6 are just <b>1 unit apart</b>, their squared errors, when compared against 3, are <b>5 units apart</b>.
-                  </li>
-                </ol>
+                  </div>
+                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section has-background-teachla-green">
+    <section id="wt" class="section has-background-teachla-green">
       <div class="container">
         <div class="columns">
           <div class="column">
             <div class="box">
               <div class="content">
                 <h2 class="title is-4">
-                  To compare the MSE's of the lines in Figure 1, let's look at each line separately, starting with the red line.
+                  Let's find the MSE of each line in Figure 1 above, starting with the <i style="color: red">red</i> line.
                 </h2>
                 <p class="is-size-5">
                   The equation of the line is:
@@ -203,9 +247,9 @@
         </div>
       </div>
     </section>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
+    <section class="section has-background-grey-light">
+      <div class="container">
+        <div class="content">
           <div class="box" id="calculations">
             <h2 class="title is-3">
               Now, the math.
@@ -293,12 +337,12 @@
               </div>
             </div>
           </div>
-
           <div class="column">
             <div class="box">
             <div class="content">
               <p class="is-size-5">
                 Let's take <b>one point at a time</b>, from left to right in Figure 1b.
+                <i class="fas fa-check-square"></i>
               </p>
               <p class="is-size-6">
                 For example, our first point has a y-value of <b>2</b> but an expected y-value of <b>3</b>.
@@ -376,7 +420,7 @@
                   </p>
                   <div class="dropdown is-pulled-right is-right is-hoverable">
                     <div class="dropdown-trigger">
-                      <div class="notification" style="cursor: pointer">
+                      <div class="notification has-background-teachla-green-dark" style="cursor: pointer">
                         Hint
                       </div>
                     </div>
@@ -396,53 +440,51 @@
         </div>
       </div>
     </section>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <div class="box">
-                <div class="content">
-                  <h2 class="title is-3">
-                    Now, a <u>real-world example</u>.
-                  </h2>
-                  <p class="is-size-5">
-                    Your goal is <b>to fit a function to best model Moore's Law</b>.
-                  </p>
-                  <p class="is-size-6">
-                    This law was the observation that the number of transistors that could fit on a microchip
-                    would double every two years (first proclaimed in 1965).
-                  </p>
-                  <p class="is-size-5">
-                    The smaller your mean squared error, the better your trend line!
-                  </p>
-                  <br>
-                  <label class="label">Your function:</label>
-                  <div class="field">
-                    <input class="input is-success" type="text" id="function-input" value="(1/20000)x^4"/>
-                  </div>
-                  <button class="button is-dark" id="function-submit">Find MSE</button>
-                  <div class="content is-inline">
-                    <div class="notification is-pulled-right" id="check-function" style="width: 25rem; display: none">
-                    </div>
+    <section id="rwe" class="section has-background-grey-light">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <div class="content">
+                <h2 class="title is-3">
+                  Now, a <u>real-world example</u>.
+                </h2>
+                <p class="is-size-5">
+                  Your goal is <b>to fit a function to best model Moore's Law</b>.
+                </p>
+                <p class="is-size-6">
+                  This law was the observation that the number of transistors that could fit on a microchip
+                  would double every two years (first proclaimed in 1965).
+                </p>
+                <p class="is-size-5">
+                  The smaller your mean squared error, the better your trend line!
+                </p>
+                <br>
+                <label class="label">Your function:</label>
+                <div class="field">
+                  <input class="input is-success" type="text" id="function-input" value="(1/20000)x^4"/>
+                </div>
+                <button class="button is-dark" id="function-submit">Find MSE</button>
+                <div class="content is-inline">
+                  <div class="notification has-background-teachla-green-dark is-pulled-right" id="check-function" style="width: 25rem; display: none">
                   </div>
                 </div>
               </div>
             </div>
-            <div class="column">
-              <div class="box">
-                <div id="data-graph" class="has-text-centered">
-                </div>
-                <h2 class="title is-5 has-text-centered">
-                  Moore's Law (1971-2018)
-                </h2>
+          </div>
+          <div class="column">
+            <div class="box">
+              <div id="data-graph" class="has-text-centered">
               </div>
+              <h2 class="title is-5 has-text-centered">
+                Moore's Law (1971-2018)
+              </h2>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="section has-background-teachla-green">
+    <section id="sum" class="section has-background-teachla-green">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -470,34 +512,32 @@
         </div>
       </div>
     </section>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <div class="box">
-                <div class="content">
-                  <h2 class="title is-3">
-                    How can I tell if my MSE is "good" or "bad"?
-                  </h2>
-                  <p class="is-size-5">
-                    Unfortunately, there is no definite answer, as it depends heavily on the
-                    context of the problem.
-                  </p>
-                  <p class="is-size-5">
-                    It isn't <i>always</i> good to have a small MSE. If it is too close to 0, we might
-                    see <b>overfitting</b>. This means our function is too "tailored" for our specific
-                    data points and might be way off if we tried a new set of similar data points. Generally, the larger our range of data and the more diverse our data is, the more
-                    "OK" it is to have a large MSE.
-                  </p>
-                  <p class="is-size-5">
-                    The <b>Moore's Law</b> example above demonstrates that a function that is pretty
-                    close to the data points might still produce a big MSE, simply because we
-                    are working with fairly large numbers. There is no universal rule for what
-                    counts as a "good" MSE, but we can probably say that an MSE of 100 would be much more
-                    reasonable here than if we were looking at a data set with a range of 10.
-                  </p>
-                </div>
+    <section class="section has-background-grey-light">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <div class="content">
+                <h2 class="title is-3">
+                  How can I tell if my MSE is "good" or "bad"?
+                </h2>
+                <p class="is-size-5">
+                  Unfortunately, there is no definite answer, as it depends heavily on the
+                  context of the problem.
+                </p>
+                <p class="is-size-5">
+                  It isn't <i>always</i> good to have a small MSE. If it is too close to 0, we might
+                  see <b>overfitting</b>. This means our function is too "tailored" for our specific
+                  data points and might be way off if we tried a new set of similar data points. Generally, the larger our range of data and the more diverse our data is, the more
+                  "OK" it is to have a large MSE.
+                </p>
+                <p class="is-size-5">
+                  The <b>Moore's Law</b> example above demonstrates that a function that is pretty
+                  close to the data points might still produce a big MSE, simply because we
+                  are working with fairly large numbers. There is no universal rule for what
+                  counts as a "good" MSE, but we can probably say that an MSE of 100 would be much more
+                  reasonable here than if we were looking at a data set with a range of 10.
+                </p>
               </div>
             </div>
           </div>

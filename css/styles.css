@@ -1,9 +1,13 @@
 body {
-	padding-top: 5rem;
+	padding-top: 3rem;
 }
 
 .has-background-teachla-green {
     background-color: #9CD931;
+}
+
+.has-background-teachla-green-dark {
+    background-color: rgb(122, 206, 25);
 }
 
 .has-border-bottom-green {
@@ -27,15 +31,8 @@ body {
 }
 
 .notification {
-	background-color: #9CD931;
 	color: white;
-	transition: 0.3s;
 	padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-}
-
-.notification:hover {
-	background-color: rgb(121, 194, 26);
-	transition: 0.3s;
 }
 
 .check-response {
