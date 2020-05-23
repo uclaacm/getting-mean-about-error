@@ -368,7 +368,7 @@ d3.csv("moores_law.csv", function(data) {
             label: 'Millions of Transistors Per Square Millimeter',
             domain: [0, 100]
         },
-        annotations:[
+        annotations: [
             {x: 5},
             {x: 10},
             {x: 15},
@@ -394,32 +394,208 @@ d3.csv("moores_law.csv", function(data) {
                 graphType: 'scatter',
                 color: 'red',
                 attr: { "stroke-width": 3 }
+            }
+        ]
+    }
+
+    data_graph_fitted = {
+        target: '#data-graph-fitted',
+        width: 475,
+        disableZoom: true,
+        xAxis: {
+            label: 'Years Since 1971',
+            domain: [0.00001, 45]
+        },
+        yAxis: {
+            type: 'log',
+            label: 'Millions of Transistors Per Square Millimeter',
+            domain: [0.0001, 100]
+        },
+        annotations: [
+            {x: 5},
+            {x: 10},
+            {x: 15},
+            {x: 20},
+            {x: 25},
+            {x: 30},
+            {x: 35},
+            {x: 40},
+            {y: 1e-4},
+            {y: 1e-3},
+            {y: 1e-2},
+            {y: 1e-1},
+            {y: 1},
+            {y: 1e1},
+            {y: 1e2}
+        ],
+        data: [
+            {
+                points: data_points,
+                fnType: 'points',
+                graphType: 'scatter',
+                color: 'red',
+                attr: { "stroke-width": 3 }
             },
             {
-                fn: '(1/20000)x^4', color: 'green',
+                fn: '(1/100000) * exp(x/2.2)', color: 'green',
                 attr: { "stroke-width": 2 }
             }
         ]
     }
 
     functionPlot(data_graph);
+    functionPlot(data_graph_fitted);
 });
 
 
+// Handle scale conversion button.
+
+let annotationsExp = [
+    {x: 5},
+    {x: 10},
+    {x: 15},
+    {x: 20},
+    {x: 25},
+    {x: 30},
+    {x: 35},
+    {x: 40},
+    {y: 10},
+    {y: 20},
+    {y: 30},
+    {y: 40},
+    {y: 50},
+    {y: 60},
+    {y: 70},
+    {y: 80},
+    {y: 90}
+];
+
+let annotationsLin = [
+    {x: 5},
+    {x: 10},
+    {x: 15},
+    {x: 20},
+    {x: 25},
+    {x: 30},
+    {x: 35},
+    {x: 40},
+    {y: 1e-4},
+    {y: 1e-3},
+    {y: 1e-2},
+    {y: 1e-1},
+    {y: 1},
+    {y: 1e1},
+    {y: 1e2}
+];
+
+document.getElementById("scale-convert").addEventListener("click", scaleConvert);
+
+var isLinear = 1;
+
+function scaleConvert() {
+    if (isLinear) {
+        data_graph_fitted.yAxis.type = 'linear';
+        data_graph_fitted.annotations = annotationsExp;
+        isLinear = 0;
+    }
+    else {
+        data_graph_fitted.yAxis.type = 'log';
+        data_graph_fitted.annotations = annotationsLin;
+        isLinear = 1;
+    }
+    functionPlot(data_graph_fitted);
+}
+
 // Handle submit button in the "real-world example" section.
+
 document.getElementById("function-submit").addEventListener("click", plotInputFn);
 
 let fnNotif = document.getElementById("check-function");
 
 function plotInputFn() {
-    let inputFn = document.getElementById("function-input").value;
-    data_graph.data[1].fn = inputFn;
-    functionPlot(data_graph);
+    let constant = document.getElementById("constant-input").value;
+    let coefficient = document.getElementById("coefficient-input").value;
+    let msgTxt;
+
+    console.log(constant);
+
+    // If empty fields were inputted.
+    if (constant.length === 0 || coefficient.length === 0) {
+        msgTxt = "A field is empty!";
+
+        fnNotif.style.display = "block";
+        fnNotif.textContent = msgTxt;
+
+        var dismissBtn = document.createElement("button");
+        dismissBtn.className = "delete";
+
+        // Handle notification click.
+        dismissBtn.addEventListener("click", handleDismiss);
+
+        function handleDismiss() {
+            fnNotif.style.display = "none";
+        }
+
+        fnNotif.appendChild(dismissBtn);
+        return;
+    }
+
+    // If non-numbers were inputted.
+    let acceptableChars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '/', '.', ' '];
+    for (let i = 0; i < constant.length; i++) {
+        if (!acceptableChars.includes(constant.charAt(i))) {
+            msgTxt = "The only acceptable inputs are digits (0-9), spaces, slashes, and decimal points.";
+
+            fnNotif.style.display = "block";
+            fnNotif.textContent = msgTxt;
+
+            var dismissBtn = document.createElement("button");
+            dismissBtn.className = "delete";
+
+            // Handle notification click.
+            dismissBtn.addEventListener("click", handleDismiss);
+
+            function handleDismiss() {
+                fnNotif.style.display = "none";
+            }
+
+            fnNotif.appendChild(dismissBtn);
+            return;
+        }
+    }
+
+    for (let i = 0; i < coefficient.length; i++) {
+        if (!acceptableChars.includes(coefficient.charAt(i))) {
+            msgTxt = "A field is empty!";
+
+            fnNotif.style.display = "block";
+            fnNotif.textContent = msgTxt;
+
+            var dismissBtn = document.createElement("button");
+            dismissBtn.className = "delete";
+
+            // Handle notification click.
+            dismissBtn.addEventListener("click", handleDismiss);
+
+            function handleDismiss() {
+                fnNotif.style.display = "none";
+            }
+
+            fnNotif.appendChild(dismissBtn);
+            return;
+        }
+    }
+
+    // Parse function.
+
+    inputFn = constant + "*exp(x/" + coefficient + ")";
+    data_graph_fitted.data[1].fn = inputFn;
+    functionPlot(data_graph_fitted);
 
     // Calculate MSE.
     let compiledFn = math.compile(inputFn);
     let fnPoints = evaluateFn(compiledFn);
-    let msgTxt = "Your MSE is " + String(meanSquaredError(data_points, fnPoints)) + ".";
+    msgTxt = "Your MSE is " + String(meanSquaredError(data_points, fnPoints)) + ".";
 
     fnNotif.style.display = "block";
     fnNotif.textContent = msgTxt;

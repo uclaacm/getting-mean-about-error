@@ -18,38 +18,21 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   </head>
   <header>
-    <nav class="navbar is-fixed-top has-border-bottom-green" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top is-spaced has-border-bottom-green" role="navigation" aria-label="main navigation">
       <div class="container">
-        <nav class="navbar" role="navigation" aria-label="dropdown navigation">
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-item" href="#top">
-              <span class="title is-5">Getting Mean About Error</span>
-            </a>
-        
-            <div class="navbar-dropdown">
-              <a class="navbar-item" href="#def">
-                <span class="title is-6">Definition</span>
-              </a>
-              <a class="navbar-item" href="#wt">
-                <span class="title is-6">Walkthrough</span>
-              </a>
-              <a class="navbar-item" href="#rwe">
-                <span class="title is-6">Real-World Example</span>
-              </a>
-              <a class="navbar-item" href="#sum">
-                <span class="title is-6">Summary</span>
-              </a>
-            </div>
-          </div>
+        <div class="navbar-brand">
+          <a class="navbar-item" href="#top">
+            <span class="title is-5">Getting Mean About Error</span>
+          </a>
 
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
-        </nav>
+        </div>
 
-        <div id="navbar-menu" class="navbar-menu">
+        <div class="navbar-menu">
           <div class="navbar-end">
             <a class="navbar-item" href="https://teachla.uclaacm.com">
               <img src="img/logo-teachla.svg" />
@@ -90,7 +73,7 @@
         </div>
       </div>
     </section>
-    <section class="section has-background-grey-light">
+    <section class="section has-background-white-ter">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -151,7 +134,7 @@
         </div>
       </div>
     </section>
-    <section class="section has-background-grey-light">
+    <section class="section has-background-white-ter">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -247,7 +230,7 @@
         </div>
       </div>
     </section>
-    <section class="section has-background-grey-light">
+    <section class="section has-background-white-ter">
       <div class="container">
         <div class="content">
           <div class="box" id="calculations">
@@ -440,7 +423,7 @@
         </div>
       </div>
     </section>
-    <section id="rwe" class="section has-background-grey-light">
+    <section id="rwe" class="section has-background-white-ter">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -452,23 +435,24 @@
                 <p class="is-size-5">
                   Your goal is <b>to fit a function to best model Moore's Law</b>.
                 </p>
-                <p class="is-size-6">
-                  This law was the observation that the number of transistors that could fit on a microchip
-                  would double every two years (first proclaimed in 1965).
-                </p>
                 <p class="is-size-5">
-                  The smaller your mean squared error, the better your trend line!
+                  Before we get fitting, we need to notice that this graph is <b>not linear</b>; it is <b>exponential</b>.
+                  This can actually cause some bias in our regression line, as our data is not normally distributed.
                 </p>
-                <br>
-                <label class="label">Your function:</label>
-                <div class="field">
-                  <input class="input is-success" type="text" id="function-input" value="(1/20000)x^4"/>
+                <div class="is-size-4">
+                  \[ y = ae^{bx} \]
                 </div>
-                <button class="button is-dark" id="function-submit">Find MSE</button>
-                <div class="content is-inline">
-                  <div class="notification has-background-teachla-green-dark is-pulled-right" id="check-function" style="width: 25rem; display: none">
-                  </div>
+                <p class="is-size-5">
+                  We can easily fix this by converting the graph to a <b>logarithmic</b> scale (taking the <i>natural log</i> of
+                  both sides).
+                </p>
+                <div class="is-size-4">
+                  \[ \ln{y} = \ln{a} + bx \]
                 </div>
+                <p class="is-size-5">
+                  Don't worry too much if this is confusing; the idea is that we are converting this exponential
+                  graph to a linear one, so that our MSE is as unbiased as possible.
+                </p>
               </div>
             </div>
           </div>
@@ -479,12 +463,64 @@
               <h2 class="title is-5 has-text-centered">
                 Moore's Law (1971-2018)
               </h2>
+              <p class="is-size-5 is-italic">
+                This law was the observation that the number of transistors that could fit on a microchip
+                would <b>double every two years</b> (first proclaimed in 1965).
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section id="sum" class="section has-background-teachla-green">
+    <section class="section has-background-teachla-green">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="box">
+              <div class="content">
+                <h2 class="title is-3">
+                  Experiment with functions and try to find a good fit!
+                </h2>
+                <p class="is-size-6 has-text-weight-bold">
+                  Your function:
+                </p>
+                <div class="is-size-4 is-inline math-format">
+                  ln <i>y</i> = ln
+                </div>
+                <div class="field is-inline">
+                  <input class="input is-rounded" type="text" id="constant-input" value="1/100000"/>
+                </div>
+                <div class="is-size-4 is-inline math-format">
+                  + 
+                </div>
+                <div class="field is-inline">
+                  <input class="input is-rounded" type="text" id="coefficient-input" value="2.2"/>
+                </div>
+                <div class="is-size-4 is-inline math-format">
+                  <i>x</i>
+                </div>
+                <button class="button is-dark is-pulled-right" id="function-submit">Find MSE</button>
+                <div class="content">
+                  <div class="notification has-background-teachla-green-dark" id="check-function" style="display: none">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="box">
+              <div id="data-graph-fitted" class="has-text-centered">
+              </div>
+              <h2 class="title is-5 has-text-centered">
+                Moore's Law (1971-2018)
+              </h2>
+              <button class="button is-dark" id="scale-convert">Convert Scale</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="sum" class="section has-background-white-ter">
       <div class="container">
         <div class="columns">
           <div class="column">
@@ -502,6 +538,11 @@
                       It is always a <b>nonnegative</b> value, and the smaller the MSE, the better our regression line.
                     </p>
                   </li>
+                  <li>
+                    <p class="is-size-5">
+                      We should restrict the use of MSE to linear models of normal distribution, to minimize bias.
+                    </p>
+                  </li>
                 </ol>
                 <p class="is-size-5">
                   Keep in mind, there are various metrics to measure error, and MSE is just one of them.
@@ -512,7 +553,7 @@
         </div>
       </div>
     </section>
-    <section class="section has-background-grey-light">
+    <section class="section has-background-teachla-green">
       <div class="container">
         <div class="columns">
           <div class="column">

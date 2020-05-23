@@ -1,5 +1,5 @@
 body {
-	padding-top: 3rem;
+	padding-top: 5rem;
 }
 
 .has-background-teachla-green {
@@ -24,10 +24,6 @@ body {
 
 .center {
 	text-align: center;
-}
-
-.mathformat {
-  padding-top: 1px;
 }
 
 .notification {
@@ -67,4 +63,16 @@ body {
 
 #calculations {
 	height: 24rem;
+}
+
+#constant-input, #coefficient-input {
+	width: 20%;
+}
+
+.math-format {
+	font-family: Times, 'Times New Roman', serif;
+}
+
+#check-function {
+	margin-top: 1.5rem;
 }
