@@ -24,12 +24,6 @@
           <a class="navbar-item" href="#top">
             <span class="title is-5">Getting Mean About Error</span>
           </a>
-
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
         </div>
 
         <div class="navbar-menu">
@@ -168,7 +162,7 @@
                     <div class="column">
                       <li>
                         <p class="is-size-4">
-                          Because we are <b>squaring</b> the differences, bigger differences are heavily (nonlinearly) punished!
+                          Because we are squaring the differences, bigger differences are heavily (nonlinearly) punished!
                         </p>
                         <p class="is-size-5">
                           <i>Example</i>:
@@ -209,7 +203,7 @@
                   \[y = \frac{3}{2}x \]
                 </p>
                 <p class="is-size-5">
-                  Notice the <b>two sets of data points</b> in Figure 1a.
+                  Notice the two sets of data points in Figure 1a.
                   The <i style="color:blue">blue</i> points are our <b>original data values</b>, and the <i>black</i> points are our <b>predicted values</b> based on the line equation.
                 </p>
                 <p class="is-size-5">
@@ -328,7 +322,7 @@
                 <i class="fas fa-check-square"></i>
               </p>
               <p class="is-size-6">
-                For example, our first point has a y-value of <b>2</b> but an expected y-value of <b>3</b>.
+                For example, our first point has a y-value of 2 but an expected y-value of 3.
                 So our squared error for Point 1 is:
               </p>
               <div>
@@ -481,6 +475,11 @@
                 <h2 class="title is-3">
                   Experiment with functions and try to find a good fit!
                 </h2>
+                <p class="is-size-6">
+                  The smaller the MSE, the better!
+                  Keep in mind that the scale is logarithmic, so the line of fit can be somewhat deceiving.
+                  Click "Convert Scale" to see your fit on the original curve!
+                </p>
                 <p class="is-size-6 has-text-weight-bold">
                   Your function:
                 </p>
@@ -499,7 +498,7 @@
                 <div class="is-size-4 is-inline math-format">
                   <i>x</i>
                 </div>
-                <button class="button is-dark is-pulled-right" id="function-submit">Find MSE</button>
+                <button class="button is-dark is-pulled-right" id="function-submit">Check MSE</button>
                 <div class="content">
                   <div class="notification has-background-teachla-green-dark" id="check-function" style="display: none">
                   </div>
@@ -564,12 +563,14 @@
                 </h2>
                 <p class="is-size-5">
                   Unfortunately, there is no definite answer, as it depends heavily on the
-                  context of the problem.
+                  <b>context</b> of the problem. In certain situations, like training a model to automate
+                  a car, a high MSE would be disastrous. In other cases, it might be more forgivable.
                 </p>
                 <p class="is-size-5">
                   It isn't <i>always</i> good to have a small MSE. If it is too close to 0, we might
                   see <b>overfitting</b>. This means our function is too "tailored" for our specific
-                  data points and might be way off if we tried a new set of similar data points. Generally, the larger our range of data and the more diverse our data is, the more
+                  data points and might be way off if we tried a new set of similar data points.
+                  Generally, the larger our range of data and the more diverse our data is, the more
                   "OK" it is to have a large MSE.
                 </p>
                 <p class="is-size-5">
@@ -588,7 +589,7 @@
     <footer class="footer has-text-centered is-dark">
       <div class="content">
         <p class="is-size-6">
-          This website was created by the <b>ACM Teach LA Dev Team</b> &#128526;
+          This website was created by the <b><a href="https://teachla.uclaacm.com">ACM Teach LA</a> Dev Team</b> &#128526;
         </p>
       </div>
     </footer>
@@ -597,5 +598,6 @@
     <script src="js/function-plot.js?v1.19.1"></script>
     <script src="js/anime.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
   </body>
 </html>

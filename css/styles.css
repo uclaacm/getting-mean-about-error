@@ -76,3 +76,15 @@ body {
 #check-function {
 	margin-top: 1.5rem;
 }
+
+@media screen and (max-width: 720px) {
+    #prev {
+		left: 4rem;
+	}
+	#next {
+		right: 4rem;
+	}
+	#calculations {
+		height: 36rem;
+	}
+}
