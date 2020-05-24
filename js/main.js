@@ -350,6 +350,9 @@ function checkMSE() {
 
 // Last section (real-world example).
 
+let data_graph;
+let data_graph_fitted;
+
 var data_points = [];
 d3.csv("moores_law.csv", function(data) {
     for (var i = 0; i < data.length; i++) {
@@ -425,8 +428,7 @@ d3.csv("moores_law.csv", function(data) {
             {y: 1e-2},
             {y: 1e-1},
             {y: 1},
-            {y: 1e1},
-            {y: 1e2}
+            {y: 1e1}
         ],
         data: [
             {
@@ -444,7 +446,10 @@ d3.csv("moores_law.csv", function(data) {
     }
 
     functionPlot(data_graph);
-    functionPlot(data_graph_fitted);
+    var instance = functionPlot(data_graph_fitted);
+
+    //console.log(instance);
+    instance.meta.yAxis.tickValues = [1e-4, 1e-3, 1e-2, 1e-1, 1, 1e1, 1e2];
 });
 
 
@@ -484,8 +489,7 @@ let annotationsLin = [
     {y: 1e-2},
     {y: 1e-1},
     {y: 1},
-    {y: 1e1},
-    {y: 1e2}
+    {y: 1e1}
 ];
 
 document.getElementById("scale-convert").addEventListener("click", scaleConvert);
@@ -496,14 +500,17 @@ function scaleConvert() {
     if (isLinear) {
         data_graph_fitted.yAxis.type = 'linear';
         data_graph_fitted.annotations = annotationsExp;
+        instance = functionPlot(data_graph_fitted);
+        instance.meta.yAxis.tickValues = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
         isLinear = 0;
     }
     else {
         data_graph_fitted.yAxis.type = 'log';
         data_graph_fitted.annotations = annotationsLin;
+        instance = functionPlot(data_graph_fitted);
+        instance.meta.yAxis.tickValues = [1e-4, 1e-3, 1e-2, 1e-1, 1, 1e1, 1e2];
         isLinear = 1;
     }
-    functionPlot(data_graph_fitted);
 }
 
 // Handle submit button in the "real-world example" section.
