@@ -1,3 +1,32 @@
+var viewportWidth;
+var graphWidth;
+
+var graphs = [];
+
+// Redraw graphs on viewport resize.
+
+function graphAll() {
+    viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    if (viewportWidth > 721) {
+        graphWidth = 460;
+    }
+    else if (viewportWidth > 500 && viewportWidth < 720) {
+        graphWidth = 400;
+    }
+    else {
+        graphWidth = 340;
+    }
+
+    for (let i = 0; i < graphs.length; i++) {
+        graphs[i].width = graphWidth;
+        functionPlot(graphs[i]);
+    }
+    notesGraphOne.width = .48 * graphWidth;
+    notesGraphTwo.width = .48 * graphWidth;
+    functionPlot(notesGraphOne);
+    functionPlot(notesGraphTwo);
+}
+
 // Generate error points and error graphs using FunctionPlot.
 
 let genErrorPoints = [];
@@ -12,9 +41,9 @@ for (let i = 0; i < xCoords.length; i++) {
     idealPointsTwo.push([xCoords[i], xCoords[i] * 1.5]);
 }
 
-let errorGraphOne = {
+graphs.push({
     target: '#error-graph-one',
-    width: 500,
+    width: graphWidth,
     disableZoom: true,
     xAxis: {
         label: 'x - axis',
@@ -58,11 +87,11 @@ let errorGraphOne = {
             attr: { "stroke-width": 5 }
         }
     ]
-}
+});
 
-let errorGraphTwo = {
+graphs.push({
     target: '#error-graph-two',
-    width: 500,
+    width: graphWidth,
     disableZoom: true,
     xAxis: {
         label: 'x - axis',
@@ -109,11 +138,11 @@ let errorGraphTwo = {
             attr: { "stroke-width": 5 }
         }
     ]
-}
+});
 
-let errorGraphThree = {
+graphs.push({
     target: '#error-graph-three',
-    width: 500,
+    width: graphWidth,
     disableZoom: true,
     //grid: true,
     xAxis: {
@@ -125,21 +154,21 @@ let errorGraphThree = {
         domain: [0, 10]
     },
     annotations:[
-      {x: 1},
-      {x: 2},
-      {x: 3},
-      {x: 4},
-      {x: 5},
-      {x: 6},
-      {y: 1},
-      {y: 2},
-      {y: 3},
-      {y: 4},
-      {y: 5},
-      {y: 6},
-      {y: 7},
-      {y: 8},
-      {y: 9}
+        {x: 1},
+        {x: 2},
+        {x: 3},
+        {x: 4},
+        {x: 5},
+        {x: 6},
+        {y: 1},
+        {y: 2},
+        {y: 3},
+        {y: 4},
+        {y: 5},
+        {y: 6},
+        {y: 7},
+        {y: 8},
+        {y: 9}
     ],
     data: [
         {
@@ -161,15 +190,15 @@ let errorGraphThree = {
             attr: { "stroke-width": 3 }
         }
     ]
-}
+});
 
-functionPlot(errorGraphOne);
-functionPlot(errorGraphTwo);
-functionPlot(errorGraphThree);
+// functionPlot(graphs[0]);
+// functionPlot(graphs[1]);
+// functionPlot(graphs[2]);
 
 let notesGraphOne = {
     target: '#notes-graph-one',
-    width: 225,
+    width: .48 * graphWidth,
     height: 180,
     disableZoom: true,
     xAxis: {
@@ -203,7 +232,7 @@ let notesGraphOne = {
 
 let notesGraphTwo = {
     target: '#notes-graph-two',
-    width: 225,
+    width: .48 * graphWidth,
     height: 180,
     disableZoom: true,
     xAxis: {
@@ -226,7 +255,7 @@ let notesGraphTwo = {
             attr: { "stroke-width": 2 }
         },
         {
-            points: [[0.5,0.3],[1,1.2],[1.5,1.3],[2,2.2],[2.5,2.3]],
+            points: [[0.5, 0.3], [1, 1.2], [1.5, 1.3], [2, 2.2], [2.5, 2.3]],
             fnType: 'points',
             graphType: 'scatter',
             color: 'blue',
@@ -235,22 +264,22 @@ let notesGraphTwo = {
     ]
 }
 
-functionPlot(notesGraphOne);
-functionPlot(notesGraphTwo);
+// functionPlot(notesGraphOne);
+// functionPlot(notesGraphTwo);
 
 
 // General function to calculate mean-squared error; pass in 2D arrays for parameters.
 // MSE = 1.5 for y = x+2; MSE = 1.125 for y = 3x/2
 
 function meanSquaredError( pointsOne, pointsTwo ) {
-  let sum = 0;
-  for (let i = 0; i < pointsOne.length; i++) {
-    // add squared distances.
-    let y1 = pointsOne[i][1];
-    let y2 = pointsTwo[i][1];
-    sum += (y2 - y1)**2.;
-  }
-  return sum / pointsOne.length;
+    let sum = 0;
+    for (let i = 0; i < pointsOne.length; i++) {
+        // add squared distances.
+        let y1 = pointsOne[i][1];
+        let y2 = pointsTwo[i][1];
+        sum += (y2 - y1)**2.;
+    }
+    return sum / pointsOne.length;
 }
 
 
@@ -266,47 +295,47 @@ for (let i = 0; i < point_btns.length; i++) {
 }
 
 function pointAns(i) {
-  pointNotif[i].style.display = "block";
-  pointNotif[i].style.width = "10rem";
+    pointNotif[i].style.display = "block";
+    pointNotif[i].style.width = "10rem";
 
-  let msgTxt;
-  let colorClass;
-  let ansInput = document.getElementsByClassName("point-input")[i].value;
+    let msgTxt;
+    let colorClass;
+    let ansInput = document.getElementsByClassName("point-input")[i].value;
 
-  if (ansInput === String((idealPointsOne[i][1]-yCoords[i])**2)) {
-    is_correct[i] = 1;
-    let is_done = 1;
-    for (let j = 0; j < is_correct.length; j++) {
-        if (is_correct[j] === 0) {
-            is_done = 0;
+    if (ansInput === String((idealPointsOne[i][1]-yCoords[i])**2)) {
+        is_correct[i] = 1;
+        let is_done = 1;
+        for (let j = 0; j < is_correct.length; j++) {
+            if (is_correct[j] === 0) {
+                is_done = 0;
+            }
         }
+        if (is_done) {
+            document.getElementById("done-msg").className = "message is-dark";
+        }
+        msgTxt = "Great!";
+        colorClass = " has-background-teachla-green-dark";
     }
-    if (is_done) {
-        document.getElementById("done-msg").className = "message is-dark";
+    else {
+        is_correct[i] = 0;
+        document.getElementById("done-msg").className = "message is-dark is-hidden";
+        msgTxt = "Not quite.";
+        colorClass = " has-background-grey-light";
     }
-    msgTxt = "Great!";
-    colorClass = " has-background-teachla-green-dark";
-  }
-  else {
-    is_correct[i] = 0;
-    document.getElementById("done-msg").className = "message is-dark is-hidden";
-    msgTxt = "Not quite.";
-    colorClass = " has-background-grey-light";
-  }
-  pointNotif[i].textContent = msgTxt;
-  pointNotif[i].className = "notification point-response" + colorClass;
+    pointNotif[i].textContent = msgTxt;
+    pointNotif[i].className = "notification point-response" + colorClass;
 
-  let dismissBtn = document.createElement("button");
-  dismissBtn.className = "delete";
+    let dismissBtn = document.createElement("button");
+    dismissBtn.className = "delete";
 
-  // Handle answer-notification click.
-  dismissBtn.addEventListener("click", handleDismiss);
+    // Handle answer-notification click.
+    dismissBtn.addEventListener("click", handleDismiss);
 
-  function handleDismiss() {
-    pointNotif[i].style.display = "none";
-  }
+    function handleDismiss() {
+        pointNotif[i].style.display = "none";
+    }
 
-  pointNotif[i].appendChild(dismissBtn);
+    pointNotif[i].appendChild(dismissBtn);
 }
 
 
@@ -317,41 +346,38 @@ document.getElementById("mse-submit").addEventListener("click", checkMSE);
 let answerNotif = document.getElementById("check-answer");
 
 function checkMSE() {
-  // MSE for demo is 1.5
-  answerNotif.style.display = "block";
-  let msgTxt;
-  let colorClass;
-  let mseInput = document.getElementById("mse-input").value;
+    // MSE for demo is 1.5
+    answerNotif.style.display = "block";
+    let msgTxt;
+    let colorClass;
+    let mseInput = document.getElementById("mse-input").value;
 
-  if (mseInput === String(meanSquaredError(genErrorPoints, idealPointsOne))) {
-    msgTxt = "Correct! This is a larger error than our red line's, so the red line is the better line of fit.";
-    colorClass = " has-background-teachla-green-dark";
-  }
-  else {
-    msgTxt = "Try again!";
-    colorClass = " has-background-grey-light";
-  }
-  answerNotif.textContent = msgTxt;
-  answerNotif.className = "notification is-pulled-right" + colorClass;
+    if (mseInput === String(meanSquaredError(genErrorPoints, idealPointsOne))) {
+        msgTxt = "Correct! This is a larger error than our red line's, so the red line is the better line of fit.";
+        colorClass = " has-background-teachla-green-dark";
+    }
+    else {
+        msgTxt = "Try again!";
+        colorClass = " has-background-grey-light";
+    }
+    answerNotif.textContent = msgTxt;
+    answerNotif.className = "notification is-pulled-right" + colorClass;
 
-  let dismissBtn = document.createElement("button");
-  dismissBtn.className = "delete";
+    let dismissBtn = document.createElement("button");
+    dismissBtn.className = "delete";
 
-  // Handle answer-notification click.
-  dismissBtn.addEventListener("click", handleDismiss);
+    // Handle answer-notification click.
+    dismissBtn.addEventListener("click", handleDismiss);
 
-  function handleDismiss() {
-    answerNotif.style.display = "none";
-  }
+    function handleDismiss() {
+        answerNotif.style.display = "none";
+    }
 
-  answerNotif.appendChild(dismissBtn);
+    answerNotif.appendChild(dismissBtn);
 }
 
 
 // Last section (real-world example).
-
-let data_graph;
-let data_graph_fitted;
 
 var data_points = [];
 d3.csv("moores_law.csv", function(data) {
@@ -359,9 +385,9 @@ d3.csv("moores_law.csv", function(data) {
         data_points.push([i, (+data[i].transistors) / 1000000]);
     }
 
-    data_graph = {
+    graphs.push({
         target: '#data-graph',
-        width: 475,
+        width: graphWidth,
         disableZoom: true,
         xAxis: {
             label: 'Years Since 1971',
@@ -399,11 +425,11 @@ d3.csv("moores_law.csv", function(data) {
                 attr: { "stroke-width": 3 }
             }
         ]
-    }
+    });
 
-    data_graph_fitted = {
+    graphs.push({
         target: '#data-graph-fitted',
-        width: 475,
+        width: graphWidth,
         disableZoom: true,
         xAxis: {
             label: 'Years Since 1971',
@@ -443,10 +469,10 @@ d3.csv("moores_law.csv", function(data) {
                 attr: { "stroke-width": 2 }
             }
         ]
-    }
+    });
 
-    functionPlot(data_graph);
-    var instance = functionPlot(data_graph_fitted);
+    // functionPlot(graphs[3]);
+    var instance = functionPlot(graphs[4]);
 
     //console.log(instance);
     instance.meta.yAxis.tickValues = [1e-4, 1e-3, 1e-2, 1e-1, 1, 1e1, 1e2];
@@ -498,16 +524,16 @@ var isLinear = 1;
 
 function scaleConvert() {
     if (isLinear) {
-        data_graph_fitted.yAxis.type = 'linear';
-        data_graph_fitted.annotations = annotationsExp;
-        instance = functionPlot(data_graph_fitted);
+        graphs[4].yAxis.type = 'linear';
+        graphs[4].annotations = annotationsExp;
+        instance = functionPlot(graphs[4]);
         instance.meta.yAxis.tickValues = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
         isLinear = 0;
     }
     else {
-        data_graph_fitted.yAxis.type = 'log';
-        data_graph_fitted.annotations = annotationsLin;
-        instance = functionPlot(data_graph_fitted);
+        graphs[4].yAxis.type = 'log';
+        graphs[4].annotations = annotationsLin;
+        instance = functionPlot(graphs[4]);
         instance.meta.yAxis.tickValues = [1e-4, 1e-3, 1e-2, 1e-1, 1, 1e1, 1e2];
         isLinear = 1;
     }
@@ -596,8 +622,8 @@ function plotInputFn() {
     // Parse function.
 
     inputFn = constant + "*exp(x/" + coefficient + ")";
-    data_graph_fitted.data[1].fn = inputFn;
-    functionPlot(data_graph_fitted);
+    graphs[4].data[1].fn = inputFn;
+    functionPlot(graphs[4]);
 
     // Calculate MSE.
     let compiledFn = math.compile(inputFn);
@@ -628,3 +654,8 @@ function evaluateFn(fn) {
     }
     return points;
 }
+
+// Graph everything once on load and every time window is resized.
+
+graphAll();
+window.addEventListener("resize", graphAll);
