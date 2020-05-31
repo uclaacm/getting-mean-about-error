@@ -296,7 +296,6 @@ for (let i = 0; i < point_btns.length; i++) {
 
 function pointAns(i) {
     pointNotif[i].style.display = "block";
-    pointNotif[i].style.width = "10rem";
 
     let msgTxt;
     let colorClass;
@@ -433,12 +432,12 @@ d3.csv("moores_law.csv", function(data) {
         disableZoom: true,
         xAxis: {
             label: 'Years Since 1971',
-            domain: [0.00001, 45]
+            domain: [0, 45]
         },
         yAxis: {
             type: 'log',
             label: 'Millions of Transistors Per Square Millimeter',
-            domain: [0.0001, 100]
+            domain: [0.00003, 100]
         },
         annotations: [
             {x: 5},
@@ -465,13 +464,13 @@ d3.csv("moores_law.csv", function(data) {
                 attr: { "stroke-width": 3 }
             },
             {
-                fn: '(1/100000) * exp(x/2.2)', color: 'green',
+                fn: '(1/10000) * exp(x * 0.4)', color: 'green',
                 attr: { "stroke-width": 2 }
             }
         ]
     });
 
-    // functionPlot(graphs[3]);
+    functionPlot(graphs[3]);
     var instance = functionPlot(graphs[4]);
 
     //console.log(instance);
@@ -621,7 +620,7 @@ function plotInputFn() {
 
     // Parse function.
 
-    inputFn = constant + "*exp(x/" + coefficient + ")";
+    inputFn = constant + "*exp(x*" + coefficient + ")";
     graphs[4].data[1].fn = inputFn;
     functionPlot(graphs[4]);
 

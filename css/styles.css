@@ -28,11 +28,7 @@ body {
 
 .notification {
 	color: white;
-	padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-}
-
-.check-response {
-	float:right;
+	padding: 0.5rem 1.3rem 0.5rem 1.3rem;
 }
 
 .steps {
@@ -77,6 +73,16 @@ body {
 	margin-top: 1.5rem;
 }
 
+.point-response {
+	width: 9rem;
+	position: absolute;
+	right: 3%;
+}
+
+#check-answer {
+	width: 23rem;
+}
+
 @media screen and (max-width: 800px) {
     #prev {
 		left: 4rem;
@@ -86,5 +92,15 @@ body {
 	}
 	#calculations {
 		height: 36rem;
+	}
+	.point-response {
+		width: 6rem;
+	}
+	.notification {
+		color: white;
+		padding: 0.5rem 1rem 0.5rem 1.0rem;
+	}
+	#check-answer {
+		width: 15rem;
 	}
 }
