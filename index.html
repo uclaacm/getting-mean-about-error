@@ -86,7 +86,7 @@
                 </p>
                 <p class="is-size-5">
                   We can look at the <span class="has-text-weight-bold">error.</span> In statistics, <span class="has-text-weight-bold">error</span>
-                  is a measure of how wrong a prediction is.<span class="has-text-weight-bold"> The better the prediction, the smaller the error</span>.
+                  is a measure of how wrong a prediction is.<span class="has-text-weight-bold"> The smaller the error, the better the prediction</span>.
                   So, we should pick the prediction with the smaller error.
                 </p>
               </div>
@@ -303,7 +303,7 @@
                   Figure 1b
                 </h2>
                 <p class="is-size-6">
-                  If you cannot do mental math for your life, use the right side to help you!
+                  Use the right side to step through the calculation step by step!
                 </p>
                 <label class="label">Calculated MSE:</label>
                 <div class="field">
@@ -430,11 +430,11 @@
                   Now, a <u>real-world example</u>.
                 </h2>
                 <p class="is-size-5">
-                  Your goal is <b>to fit a function to best model Moore's Law</b>.
+                  Your goal is <b>to fit a model to Moore's Law</b>.
                 </p>
                 <p class="is-size-5">
                   Before we get fitting, we need to notice that this graph is <b>not linear</b>; it is <b>exponential</b>.
-                  This can actually cause some bias in our regression line, as our data is not normally distributed.
+                  This can actually cause some bias in our regression line, as our data will not be normally distributed about any prediction line drawn through the data.
                 </p>
                 <div class="is-size-4">
                   \[ y = ae^{bx} \]
@@ -476,7 +476,7 @@
             <div class="box">
               <div class="content">
                 <h2 class="title is-3">
-                  Experiment with functions and try to find a good fit!
+                  Experiment with different models and try to find a good fit!
                 </h2>
                 <p class="is-size-6">
                   The smaller the MSE, the better!
@@ -484,7 +484,7 @@
                   Click "Convert Scale" to see your fit on the original curve!
                 </p>
                 <p class="is-size-6 has-text-weight-bold">
-                  Your function:
+                  Your model:
                 </p>
                 <div class="is-size-4 is-inline math-format">
                   ln <i>y</i> = ln
@@ -493,7 +493,7 @@
                   <input class="input is-rounded" type="text" id="constant-input" value="1/100000"/>
                 </div>
                 <div class="is-size-4 is-inline math-format">
-                  + 
+                  +
                 </div>
                 <div class="field is-inline">
                   <input class="input is-rounded" type="text" id="coefficient-input" value="2.2"/>
@@ -542,12 +542,12 @@
                   </li>
                   <li>
                     <p class="is-size-5">
-                      We should restrict the use of MSE to linear models of normal distribution, to minimize bias.
+                      We should restrict the use of MSE to linearly-correlated data, to minimize bias.
                     </p>
                   </li>
                 </ol>
                 <p class="is-size-5">
-                  Keep in mind that there are various metrics to measure error, and MSE is just one of them.
+                  Keep in mind that there are various metrics to measure the error of a model, and MSE is just one of them.
                 </p>
               </div>
             </div>
@@ -574,13 +574,13 @@
                 </p>
                 <p class="is-size-5">
                   It isn't <i>always</i> good to have a small MSE. If it is too close to 0, we might
-                  see <b>overfitting</b>. This means our function is too "tailored" for our specific
+                  see <b>overfitting</b>. This means our model is too "tailored" for our specific
                   data points and might be way off if we tried a new set of similar data points.
                   Generally, the larger our range of data and the more diverse our data is, the more
                   "OK" it is to have a large MSE.
                 </p>
                 <p class="is-size-5">
-                  The <b>Moore's Law</b> example above demonstrates that a function that is pretty
+                  The <b>Moore's Law</b> example above demonstrates that a model that is pretty
                   close to the data points might still produce a big MSE, simply because we
                   are working with fairly large numbers. There is no universal rule for what
                   counts as a "good" MSE, but we can probably say that an MSE of 100 would be much more
